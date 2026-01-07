@@ -156,12 +156,10 @@ const Index = () => {
       {/* Statistics */}
       <section className="py-20 bg-gradient-to-r from-gold to-terracotta">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 gap-8">
             {[
-              { number: "50+", label: "Communities Reached" },
-              { number: "10,000+", label: "Lives Impacted" },
-              { number: "25+", label: "Churches Planted" },
-              { number: "15+", label: "Years of Service" },
+              { number: "30+", label: "Years of Service" },
+              { number: "Many", label: "Churches Impacted" },
             ].map((stat, index) => (
               <div key={index} className="text-center">
                 <p className="font-display text-4xl md:text-5xl font-bold text-cream mb-2">
