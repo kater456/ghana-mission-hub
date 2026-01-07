@@ -21,14 +21,14 @@ const Index = () => {
         <div className="relative z-10 container mx-auto px-4 py-20 text-center">
           <div className="max-w-4xl mx-auto">
             <p className="text-gold font-medium mb-4 animate-fade-in opacity-0" style={{ animationDelay: '0.2s' }}>
-              Spreading Hope Across Ghana
+              Reaching the Unreached in Ghana & Beyond
             </p>
             <h1 className="font-display text-4xl md:text-6xl lg:text-7xl font-bold text-cream mb-6 animate-fade-in opacity-0" style={{ animationDelay: '0.4s' }}>
               Transforming Lives Through{" "}
               <span className="text-gold">Faith & Service</span>
             </h1>
             <p className="text-cream/90 text-lg md:text-xl mb-8 max-w-2xl mx-auto animate-fade-in opacity-0" style={{ animationDelay: '0.6s' }}>
-              Mission House Ghana is a Christian mission organization committed to spreading the Gospel, supporting vulnerable communities, and carrying out humanitarian outreach.
+              Mission House Ghana is a Christian mission organization focused on reaching unreached people groups in Ghana and beyond with the wholistic Gospel of Jesus Christ.
             </p>
             
             {/* Bible Verse */}
@@ -85,7 +85,7 @@ const Index = () => {
               Our Impact Areas
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              Through various programs and initiatives, we bring hope and transformation to communities across Ghana.
+              Through various programs and initiatives, we bring hope and transformation to unreached people groups across Ghana and beyond.
             </p>
           </div>
 
@@ -94,7 +94,7 @@ const Index = () => {
               {
                 icon: Church,
                 title: "Evangelism & Outreach",
-                description: "Spreading the Gospel to unreached communities and planting churches.",
+                description: "Reaching unreached people groups with the Gospel and planting churches among them.",
                 image: worshipService,
               },
               {
@@ -182,7 +182,7 @@ const Index = () => {
                 To See Transformed Lives & Communities Rooted in Christ
               </h2>
               <p className="text-muted-foreground text-lg mb-6 leading-relaxed">
-                We envision a Ghana where every community has heard the Gospel, where the vulnerable are cared for, and where believers are equipped to serve with their gifts and talents.
+                We envision unreached people groups in Ghana and beyond hearing the Gospel, where the vulnerable are cared for, and where believers are equipped to serve with their gifts and talents.
               </p>
               <div className="space-y-4">
                 {[
@@ -239,7 +239,7 @@ const Index = () => {
               {
                 icon: Heart,
                 title: "Donate",
-                description: "Your financial support helps us reach more communities with the Gospel and provide essential services.",
+                description: "Your financial support helps us reach more unreached people groups with the Gospel and provide essential services.",
                 link: "/donate",
                 linkText: "Make a Donation",
               },

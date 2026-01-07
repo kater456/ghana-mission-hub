@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Heart, Mail, Phone, MapPin, Facebook, Twitter, Instagram, Youtube } from "lucide-react";
+import { Heart, Mail, Phone, MapPin, Twitter, Youtube } from "lucide-react";
 import logo from "@/assets/logo.jpg";
 
 const Footer = () => {
@@ -45,17 +45,11 @@ const Footer = () => {
               </div>
             </div>
             <p className="text-cream/80 text-sm leading-relaxed mb-6">
-              A Christian mission organization committed to spreading the Gospel and supporting vulnerable communities across Ghana and beyond.
+              A Christian mission organization focused on reaching unreached people groups in Ghana and beyond with the wholistic Gospel of Jesus Christ.
             </p>
             <div className="flex gap-3">
               <a href="#" className="w-10 h-10 rounded-full bg-cream/10 flex items-center justify-center hover:bg-gold transition-colors">
-                <Facebook className="w-5 h-5" />
-              </a>
-              <a href="#" className="w-10 h-10 rounded-full bg-cream/10 flex items-center justify-center hover:bg-gold transition-colors">
                 <Twitter className="w-5 h-5" />
-              </a>
-              <a href="#" className="w-10 h-10 rounded-full bg-cream/10 flex items-center justify-center hover:bg-gold transition-colors">
-                <Instagram className="w-5 h-5" />
               </a>
               <a href="#" className="w-10 h-10 rounded-full bg-cream/10 flex items-center justify-center hover:bg-gold transition-colors">
                 <Youtube className="w-5 h-5" />
@@ -91,9 +85,9 @@ const Footer = () => {
           <div>
             <h4 className="font-display font-bold text-lg mb-6">Contact Us</h4>
             <div className="flex flex-col gap-4">
-              <a href="mailto:info@missionhouseghana.org" className="flex items-start gap-3 text-cream/80 hover:text-gold transition-colors">
+              <a href="mailto:missionhouseintlghana@gmail.com" className="flex items-start gap-3 text-cream/80 hover:text-gold transition-colors">
                 <Mail className="w-5 h-5 mt-0.5 shrink-0" />
-                <span>info@missionhouseghana.org</span>
+                <span>missionhouseintlghana@gmail.com</span>
               </a>
               <a href="tel:+233246865747" className="flex items-start gap-3 text-cream/80 hover:text-gold transition-colors">
                 <Phone className="w-5 h-5 mt-0.5 shrink-0" />
@@ -101,7 +95,7 @@ const Footer = () => {
               </a>
               <div className="flex items-start gap-3 text-cream/80">
                 <MapPin className="w-5 h-5 mt-0.5 shrink-0" />
-                <span>Accra, Ghana<br />West Africa</span>
+                <span>Suhum, Ghana<br />West Africa</span>
               </div>
             </div>
           </div>

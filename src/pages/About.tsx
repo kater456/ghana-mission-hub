@@ -36,13 +36,13 @@ const About = () => {
               </h2>
               <div className="space-y-4 text-muted-foreground leading-relaxed">
                 <p>
-                  Mission House Ghana was established with a divine calling to take the wholistic Gospel of Jesus Christ to all nations. What began as a small group of dedicated believers has grown into a vibrant mission organization reaching communities across Ghana and beyond.
+                  Mission House Ghana was established with a divine calling to take the wholistic Gospel of Jesus Christ to unreached people groups. What began as a small group of dedicated believers has grown into a vibrant mission organization reaching unreached communities across Ghana and beyond.
                 </p>
                 <p>
                   Our founders recognized that true transformation comes not only through spiritual awakening but also through meeting the practical needs of communities. This understanding led to the development of our comprehensive approach to ministry — one that addresses both the spiritual and physical needs of those we serve.
                 </p>
                 <p>
-                  Today, we continue to build on this foundation, partnering with churches, donors, and volunteers worldwide to expand our reach and deepen our impact. Every life we touch, every community we serve, and every church we plant is a testament to God's faithfulness and the power of collective action.
+                  Today, we continue to build on this foundation, partnering with churches, donors, and volunteers worldwide to expand our reach to unreached people groups and deepen our impact. Every life we touch, every community we serve, and every church we plant among unreached peoples is a testament to God's faithfulness and the power of collective action.
                 </p>
               </div>
             </div>
