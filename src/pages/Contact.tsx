@@ -57,10 +57,10 @@ const Contact = () => {
                   <div className="w-12 h-12 rounded-xl bg-gold/10 flex items-center justify-center shrink-0">
                     <Mail className="w-6 h-6 text-gold" />
                   </div>
-                  <div>
+                <div>
                     <h3 className="font-medium text-foreground mb-1">Email</h3>
-                    <a href="mailto:info@missionhouseghana.org" className="text-muted-foreground hover:text-gold transition-colors">
-                      info@missionhouseghana.org
+                    <a href="mailto:missionhouseintlghana@gmail.com" className="text-muted-foreground hover:text-gold transition-colors">
+                      missionhouseintlghana@gmail.com
                     </a>
                   </div>
                 </div>
@@ -81,10 +81,10 @@ const Contact = () => {
                   <div className="w-12 h-12 rounded-xl bg-gold/10 flex items-center justify-center shrink-0">
                     <MapPin className="w-6 h-6 text-gold" />
                   </div>
-                  <div>
+                <div>
                     <h3 className="font-medium text-foreground mb-1">Address</h3>
                     <p className="text-muted-foreground">
-                      Accra, Ghana<br />
+                      Suhum, Ghana<br />
                       West Africa
                     </p>
                   </div>
