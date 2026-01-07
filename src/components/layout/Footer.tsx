@@ -96,9 +96,9 @@ const Footer = () => {
                 <Mail className="w-5 h-5 mt-0.5 shrink-0" />
                 <span>info@missionhouseghana.org</span>
               </a>
-              <a href="tel:+233000000000" className="flex items-start gap-3 text-cream/80 hover:text-gold transition-colors">
+              <a href="tel:+233246865747" className="flex items-start gap-3 text-cream/80 hover:text-gold transition-colors">
                 <Phone className="w-5 h-5 mt-0.5 shrink-0" />
-                <span>+233 (0) 00 000 0000</span>
+                <span>+233 24 686 5747</span>
               </a>
               <div className="flex items-start gap-3 text-cream/80">
                 <MapPin className="w-5 h-5 mt-0.5 shrink-0" />
