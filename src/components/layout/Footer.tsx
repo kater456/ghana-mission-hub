@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Heart, Mail, Phone, MapPin, Facebook, Twitter, Instagram, Youtube } from "lucide-react";
+import logo from "@/assets/logo.jpg";
 
 const Footer = () => {
   return (
@@ -37,9 +38,7 @@ const Footer = () => {
           {/* About */}
           <div>
             <div className="flex items-center gap-3 mb-6">
-              <div className="w-12 h-12 rounded-full bg-gradient-to-br from-gold to-terracotta flex items-center justify-center">
-                <span className="text-cream font-display font-bold text-xl">M</span>
-              </div>
+              <img src={logo} alt="Mission House Ghana" className="w-12 h-12 rounded-full object-cover" />
               <div>
                 <h4 className="font-display font-bold text-xl">Mission House</h4>
                 <p className="text-cream/70 text-sm">Ghana</p>
