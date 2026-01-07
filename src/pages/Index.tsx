@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Heart, Users, HandHeart, ChevronRight, BookOpen, Stethoscope, GraduationCap, Church } from "lucide-react";
-import heroImage from "@/assets/hero-image.jpg";
-import communityOutreach from "@/assets/community-outreach.jpg";
-import medicalOutreach from "@/assets/medical-outreach.jpg";
-import worshipService from "@/assets/worship-service.jpg";
-import educationProgram from "@/assets/education-program.jpg";
+import heroImage from "@/assets/community-gathering.jpg";
+import communityOutreach from "@/assets/community-gathering.jpg";
+import medicalOutreach from "@/assets/bike-giving.jpg";
+import worshipService from "@/assets/community-gathering.jpg";
+import educationProgram from "@/assets/bike-giving.jpg";
 
 const Index = () => {
   return (
