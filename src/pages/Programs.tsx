@@ -1,60 +1,46 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ChevronRight, Church, Stethoscope, GraduationCap, HandHeart, Users, Tent } from "lucide-react";
+import { ChevronRight, Church, Stethoscope, GraduationCap, HandHeart, Users } from "lucide-react";
 import communityOutreach from "@/assets/community-outreach.jpg";
-import medicalOutreach from "@/assets/medical-outreach.jpg";
 import worshipService from "@/assets/worship-service.jpg";
-import educationProgram from "@/assets/education-program.jpg";
+import schoolShoes from "@/assets/school-shoes.jpg";
+import schoolChildren from "@/assets/school-children.jpg";
 
 const programs = [
   {
     icon: Church,
     title: "Evangelism & Church Planting",
-    description: "We share the Gospel with unreached communities and plant churches that become centers of spiritual transformation and community development.",
-    impact: "25+ churches planted",
+    description: "We take the Gospel to unreached people groups in northern Ghana and beyond, planting churches among the Konkomba, Kusasi, and other unreached communities.",
+    impact: "Many churches planted",
     image: worshipService,
     details: [
-      "Gospel outreach to remote villages",
-      "Church planting in unreached areas",
+      "Gospel outreach to unreached people groups",
+      "Church planting among Konkomba & Kusasi",
       "Pastor training and support",
       "Discipleship programs",
-      "Youth evangelism initiatives",
-    ],
-  },
-  {
-    icon: Stethoscope,
-    title: "Medical Missions",
-    description: "Our healthcare initiatives bring medical services to underserved communities, addressing both physical ailments and spiritual needs.",
-    impact: "5,000+ patients served annually",
-    image: medicalOutreach,
-    details: [
-      "Free medical clinics",
-      "Health education programs",
-      "Maternal and child health services",
-      "Disease prevention campaigns",
-      "Medical supplies distribution",
+      "Reaching new unreached communities",
     ],
   },
   {
     icon: GraduationCap,
-    title: "Education Support",
-    description: "We believe education is key to breaking the cycle of poverty. Our programs support children and youth in their educational journey.",
-    impact: "500+ students supported",
-    image: educationProgram,
+    title: "Education & Schools",
+    description: "We run schools in unreached communities, providing quality education and Christian formation to children who would otherwise have no access to learning.",
+    impact: "Schools in unreached areas",
+    image: schoolChildren,
     details: [
+      "Schools in remote villages",
+      "School supplies & uniforms",
+      "Teacher training & support",
       "Scholarship programs",
-      "School supplies distribution",
       "After-school tutoring",
-      "Vocational training",
-      "Adult literacy classes",
     ],
   },
   {
     icon: HandHeart,
     title: "Community Development",
-    description: "We empower communities through sustainable development projects that create lasting change and self-sufficiency.",
-    impact: "50+ communities reached",
-    image: communityOutreach,
+    description: "We empower unreached communities through sustainable development projects that create lasting change and self-sufficiency.",
+    impact: "Multiple communities served",
+    image: schoolShoes,
     details: [
       "Clean water projects",
       "Agricultural training",
@@ -66,9 +52,9 @@ const programs = [
   {
     icon: Users,
     title: "Missionary Training",
-    description: "We raise and train the next generation of missionaries who will take the Gospel to the ends of the earth.",
-    impact: "100+ missionaries trained",
-    image: worshipService,
+    description: "We raise and train missionaries who will take the Gospel to unreached people groups across Ghana and beyond.",
+    impact: "Growing missionary team",
+    image: communityOutreach,
     details: [
       "Biblical training programs",
       "Cross-cultural ministry training",
@@ -78,17 +64,18 @@ const programs = [
     ],
   },
   {
-    icon: Tent,
-    title: "Disaster Relief",
-    description: "When disaster strikes, we respond with immediate aid and long-term recovery support to affected communities.",
-    impact: "Rapid response team",
-    image: communityOutreach,
+    icon: Stethoscope,
+    title: "Healthcare Initiative",
+    description: "We have a vision to support unreached communities with healthcare services. This is an area we hope to develop with your partnership.",
+    impact: "Future Initiative",
+    isFuture: true,
+    image: worshipService,
     details: [
-      "Emergency food and supplies",
-      "Temporary shelter provision",
-      "Trauma counseling",
-      "Community rebuilding",
-      "Long-term recovery support",
+      "Medical outreach planning",
+      "Health education programs",
+      "Maternal and child health",
+      "Disease prevention awareness",
+      "Partnership opportunities",
     ],
   },
 ];
@@ -109,7 +96,7 @@ const Programs = () => {
             Our Programs
           </h1>
           <p className="text-cream/80 text-lg max-w-2xl mx-auto">
-            Through various initiatives, we bring hope, healing, and transformation to communities across Ghana.
+            Through various initiatives, we bring hope, healing, and transformation to unreached people groups across Ghana and beyond.
           </p>
         </div>
       </section>
@@ -126,9 +113,11 @@ const Programs = () => {
                 }`}
               >
                 <div className={index % 2 === 1 ? "lg:order-2" : ""}>
-                  <div className="inline-flex items-center gap-3 bg-gold/10 px-4 py-2 rounded-full mb-6">
-                    <program.icon className="w-5 h-5 text-gold" />
-                    <span className="text-gold font-medium">{program.impact}</span>
+                  <div className={`inline-flex items-center gap-3 px-4 py-2 rounded-full mb-6 ${
+                    (program as any).isFuture ? "bg-terracotta/10" : "bg-gold/10"
+                  }`}>
+                    <program.icon className={`w-5 h-5 ${(program as any).isFuture ? "text-terracotta" : "text-gold"}`} />
+                    <span className={`font-medium ${(program as any).isFuture ? "text-terracotta" : "text-gold"}`}>{program.impact}</span>
                   </div>
                   <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-4">
                     {program.title}
