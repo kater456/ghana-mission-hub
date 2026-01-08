@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ChevronRight, Heart, Users, Shield, Handshake, Lightbulb } from "lucide-react";
-import communityOutreach from "@/assets/community-outreach.jpg";
-import worshipService from "@/assets/worship-service.jpg";
-
+import { ChevronRight, Heart, Users, Shield, Handshake, Lightbulb, MapPin, Church } from "lucide-react";
+import outreach from "@/assets/outreach.jpg";
+import northernOutreach from "@/assets/northern-outreach.jpg";
+import schoolOutreach from "@/assets/school-outreach.jpg";
 const About = () => {
   return (
     <div className="flex flex-col">
@@ -39,17 +39,20 @@ const About = () => {
                   Mission House Ghana was established with a divine calling to take the wholistic Gospel of Jesus Christ to unreached people groups. What began as a small group of dedicated believers has grown into a vibrant mission organization reaching unreached communities across Ghana and beyond.
                 </p>
                 <p>
-                  Our founders recognized that true transformation comes not only through spiritual awakening but also through meeting the practical needs of communities. This understanding led to the development of our comprehensive approach to ministry — one that addresses both the spiritual and physical needs of those we serve.
+                  <strong>Our work is mainly focused in the northern part of Ghana</strong>, with our head office based in Suhum. Over the years, we have planted many churches among the <strong>Konkomba and Kusasi</strong> people groups, bringing the light of the Gospel to communities that had little or no access to the Good News.
                 </p>
                 <p>
-                  Today, we continue to build on this foundation, partnering with churches, donors, and volunteers worldwide to expand our reach to unreached people groups and deepen our impact. Every life we touch, every community we serve, and every church we plant among unreached peoples is a testament to God's faithfulness and the power of collective action.
+                  We are also actively reaching new unreached people groups, expanding our mission field as the Lord opens doors. Our founders recognized that true transformation comes not only through spiritual awakening but also through meeting the practical needs of communities. This understanding led to the development of our comprehensive approach to ministry.
+                </p>
+                <p>
+                  Today, we continue to build on this foundation, partnering with churches, donors, and volunteers worldwide to expand our reach to unreached people groups and deepen our impact.
                 </p>
               </div>
             </div>
             <div className="relative">
               <img
-                src={communityOutreach}
-                alt="Community outreach"
+                src={outreach}
+                alt="Church worship in northern Ghana"
                 className="rounded-2xl shadow-elevated"
               />
               <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-gradient-to-br from-gold to-terracotta rounded-2xl opacity-50" />
@@ -182,8 +185,8 @@ const About = () => {
 
           <div className="bg-card p-8 md:p-12 rounded-2xl shadow-soft max-w-3xl mx-auto text-center">
             <img
-              src={worshipService}
-              alt="Leadership team"
+              src={northernOutreach}
+              alt="Community outreach in northern Ghana"
               className="w-full h-64 object-cover rounded-xl mb-8"
             />
             <h3 className="font-display text-xl font-bold text-foreground mb-4">
