@@ -31,7 +31,6 @@ const programs = [
       "Schools in remote villages",
       "School supplies & uniforms",
       "Teacher training & support",
-      "Scholarship programs",
       "After-school tutoring",
     ],
   },
