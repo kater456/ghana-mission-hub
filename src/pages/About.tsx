@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ChevronRight, Heart, Users, Shield, Handshake, Lightbulb, MapPin, Church } from "lucide-react";
+import { ChevronRight, Heart, Users, Shield, Handshake, Lightbulb, MapPin, Church, Globe, BookOpen } from "lucide-react";
 import outreach from "@/assets/outreach.jpg";
 import northernOutreach from "@/assets/northern-outreach.jpg";
 import schoolOutreach from "@/assets/school-outreach.jpg";
@@ -36,7 +36,7 @@ const About = () => {
               </h2>
               <div className="space-y-4 text-muted-foreground leading-relaxed">
                 <p>
-                  Mission House Ghana was established with a divine calling to take the wholistic Gospel of Jesus Christ to unreached people groups. What began as a small group of dedicated believers has grown into a vibrant mission organization reaching unreached communities across Ghana and beyond.
+                  Mission House Ghana is part of a global mission movement founded by <strong>Tor Uja</strong>, with headquarters in Makurdi, Benue State, Nigeria. Our Ghana chapter was established with a divine calling to take the wholistic Gospel of Jesus Christ to unreached people groups. What began as a small group of dedicated believers has grown into a vibrant mission organization reaching unreached communities across Ghana and beyond.
                 </p>
                 <p>
                   <strong>Our work is mainly focused in the northern part of Ghana</strong>, with our head office based in Suhum. Over the years, we have planted many churches among the <strong>Konkomba and Kusasi</strong> people groups, bringing the light of the Gospel to communities that had little or no access to the Good News.
@@ -56,6 +56,25 @@ const About = () => {
                 className="rounded-2xl shadow-elevated"
               />
               <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-gradient-to-br from-gold to-terracotta rounded-2xl opacity-50" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Vision Section */}
+      <section className="py-16 bg-gradient-to-br from-earth to-earth-light">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto text-center">
+            <div className="flex items-center justify-center gap-3 mb-4">
+              <Globe className="w-8 h-8 text-gold" />
+              <p className="text-gold font-medium">Our Vision</p>
+            </div>
+            <h2 className="font-display text-2xl md:text-3xl font-bold text-cream mb-6">
+              "That all nations of the world be free with all other under the Lordship of Jesus Christ and a living Church."
+            </h2>
+            <div className="flex items-center justify-center gap-2 text-cream/80">
+              <BookOpen className="w-5 h-5" />
+              <p className="italic">Revelation 7:9-10</p>
             </div>
           </div>
         </div>
