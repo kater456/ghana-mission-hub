@@ -15,11 +15,19 @@ const Contact = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Create mailto link with form data
+    const subject = encodeURIComponent(`[${formData.subject}] Message from ${formData.name}`);
+    const body = encodeURIComponent(
+      `Name: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone || 'Not provided'}\n\nMessage:\n${formData.message}`
+    );
+    
+    window.location.href = `mailto:missionhouseintlghana@gmail.com?subject=${subject}&body=${body}`;
+    
     toast({
-      title: "Message Sent!",
-      description: "Thank you for reaching out. We'll get back to you soon.",
+      title: "Opening Email Client",
+      description: "Your email app will open with your message. Please send the email to complete.",
     });
-    setFormData({ name: "", email: "", phone: "", subject: "", message: "" });
   };
 
   return (
