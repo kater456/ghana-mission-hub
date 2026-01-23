@@ -1,6 +1,10 @@
-import { Link } from "react-router-dom";
-import { Heart, Mail, Phone, MapPin, Twitter, Youtube } from "lucide-react";
+import { Link, useNavigate } from "react-router-dom";
+import { Heart, Mail, Phone, MapPin, Youtube } from "lucide-react";
 import logo from "@/assets/logo.jpg";
+
+const scrollToTop = () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+};
 
 const Footer = () => {
   return (
@@ -48,10 +52,7 @@ const Footer = () => {
               A Christian mission organization focused on reaching unreached people groups in Ghana and beyond with the wholistic Gospel of Jesus Christ.
             </p>
             <div className="flex gap-3">
-              <a href="#" className="w-10 h-10 rounded-full bg-cream/10 flex items-center justify-center hover:bg-gold transition-colors">
-                <Twitter className="w-5 h-5" />
-              </a>
-              <a href="#" className="w-10 h-10 rounded-full bg-cream/10 flex items-center justify-center hover:bg-gold transition-colors">
+              <a href="https://youtube.com/@missionhouseintlghana?si=evXDRYwKul9oXQp2" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-cream/10 flex items-center justify-center hover:bg-gold transition-colors">
                 <Youtube className="w-5 h-5" />
               </a>
             </div>
@@ -61,11 +62,11 @@ const Footer = () => {
           <div>
             <h4 className="font-display font-bold text-lg mb-6">Quick Links</h4>
             <nav className="flex flex-col gap-3">
-              <Link to="/about" className="text-cream/80 hover:text-gold transition-colors">About Us</Link>
-              <Link to="/mission" className="text-cream/80 hover:text-gold transition-colors">Mission & Vision</Link>
-              <Link to="/programs" className="text-cream/80 hover:text-gold transition-colors">Our Programs</Link>
-              <Link to="/partners" className="text-cream/80 hover:text-gold transition-colors">Partners & Donors</Link>
-              <Link to="/blog" className="text-cream/80 hover:text-gold transition-colors">News & Blog</Link>
+              <Link to="/about" onClick={scrollToTop} className="text-cream/80 hover:text-gold transition-colors">About Us</Link>
+              <Link to="/mission" onClick={scrollToTop} className="text-cream/80 hover:text-gold transition-colors">Mission & Vision</Link>
+              <Link to="/programs" onClick={scrollToTop} className="text-cream/80 hover:text-gold transition-colors">Our Programs</Link>
+              <Link to="/partners" onClick={scrollToTop} className="text-cream/80 hover:text-gold transition-colors">Partners & Donors</Link>
+              <Link to="/blog" onClick={scrollToTop} className="text-cream/80 hover:text-gold transition-colors">News & Blog</Link>
             </nav>
           </div>
 
@@ -73,11 +74,11 @@ const Footer = () => {
           <div>
             <h4 className="font-display font-bold text-lg mb-6">Get Involved</h4>
             <nav className="flex flex-col gap-3">
-              <Link to="/donate" className="text-cream/80 hover:text-gold transition-colors">Make a Donation</Link>
-              <Link to="/get-involved" className="text-cream/80 hover:text-gold transition-colors">Volunteer</Link>
-              <Link to="/get-involved" className="text-cream/80 hover:text-gold transition-colors">Become a Partner</Link>
-              <Link to="/get-involved" className="text-cream/80 hover:text-gold transition-colors">Mission Trips</Link>
-              <Link to="/contact" className="text-cream/80 hover:text-gold transition-colors">Contact Us</Link>
+              <Link to="/donate" onClick={scrollToTop} className="text-cream/80 hover:text-gold transition-colors">Make a Donation</Link>
+              <Link to="/get-involved" onClick={scrollToTop} className="text-cream/80 hover:text-gold transition-colors">Volunteer</Link>
+              <Link to="/get-involved" onClick={scrollToTop} className="text-cream/80 hover:text-gold transition-colors">Become a Partner</Link>
+              <Link to="/get-involved" onClick={scrollToTop} className="text-cream/80 hover:text-gold transition-colors">Mission Trips</Link>
+              <Link to="/contact" onClick={scrollToTop} className="text-cream/80 hover:text-gold transition-colors">Contact Us</Link>
             </nav>
           </div>
 
