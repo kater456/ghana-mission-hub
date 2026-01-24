@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ChevronRight, Church, Stethoscope, GraduationCap, HandHeart, Users } from "lucide-react";
 import communityOutreach from "@/assets/community-outreach.jpg";
+import missionaryTraining from "@/assets/missionary-training.jpg";
 import worshipService from "@/assets/worship-service.jpg";
 import schoolShoes from "@/assets/school-shoes.jpg";
 import schoolChildren from "@/assets/school-children.jpg";
@@ -51,7 +52,7 @@ const programs = [
     title: "Missionary Training",
     description: "We raise and train missionaries who will take the Gospel to unreached people groups across Ghana and beyond.",
     impact: "Growing missionary team",
-    image: communityOutreach,
+    image: missionaryTraining,
     details: [
       "Biblical training programs",
       "Cross-cultural ministry training",

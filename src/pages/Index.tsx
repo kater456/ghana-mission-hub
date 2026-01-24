@@ -5,7 +5,7 @@ import heroImage from "@/assets/community-gathering.jpg";
 import communityOutreach from "@/assets/community-gathering.jpg";
 import medicalOutreach from "@/assets/medical-mission-home.jpg";
 import worshipService from "@/assets/community-gathering.jpg";
-import educationProgram from "@/assets/bike-giving.jpg";
+import educationProgram from "@/assets/education-support.jpg";
 
 const Index = () => {
   return (
