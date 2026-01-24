@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Heart, Users, HandHeart, ChevronRight, BookOpen, Stethoscope, GraduationCap, Church } from "lucide-react";
 import heroImage from "@/assets/community-gathering.jpg";
 import communityOutreach from "@/assets/community-gathering.jpg";
-import medicalOutreach from "@/assets/bike-giving.jpg";
+import medicalOutreach from "@/assets/medical-mission-home.jpg";
 import worshipService from "@/assets/community-gathering.jpg";
 import educationProgram from "@/assets/bike-giving.jpg";
 

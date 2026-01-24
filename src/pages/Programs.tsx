@@ -5,6 +5,7 @@ import communityOutreach from "@/assets/community-outreach.jpg";
 import worshipService from "@/assets/worship-service.jpg";
 import schoolShoes from "@/assets/school-shoes.jpg";
 import schoolChildren from "@/assets/school-children.jpg";
+import healthcareInitiative from "@/assets/healthcare-initiative.jpg";
 
 const programs = [
   {
@@ -31,7 +32,6 @@ const programs = [
       "Schools in remote villages",
       "School supplies & uniforms",
       "Teacher training & support",
-      "After-school tutoring",
     ],
   },
   {
@@ -41,11 +41,9 @@ const programs = [
     impact: "Multiple communities served",
     image: schoolShoes,
     details: [
-      "Clean water projects",
+      "Establishing schools in communities",
       "Agricultural training",
-      "Women's empowerment programs",
       "Infrastructure development",
-      "Economic empowerment",
     ],
   },
   {
@@ -68,7 +66,7 @@ const programs = [
     description: "We have a vision to support unreached communities with healthcare services. This is an area we hope to develop with your partnership.",
     impact: "Future Initiative",
     isFuture: true,
-    image: worshipService,
+    image: healthcareInitiative,
     details: [
       "Medical outreach planning",
       "Health education programs",
