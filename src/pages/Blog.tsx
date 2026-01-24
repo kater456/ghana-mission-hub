@@ -1,6 +1,13 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ChevronRight, Calendar, ArrowRight } from "lucide-react";
+import { ChevronRight, Calendar, ArrowRight, X } from "lucide-react";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import communityOutreach from "@/assets/community-outreach.jpg";
 import medicalOutreach from "@/assets/medical-outreach.jpg";
 import worshipService from "@/assets/worship-service.jpg";
@@ -9,11 +16,39 @@ import educationProgram from "@/assets/education-program.jpg";
 const blogPosts = [
   {
     id: 1,
-    title: "Medical Mission Reaches Remote Village in Northern Ghana",
-    excerpt: "Our medical team brought healthcare services to over 500 people in a community that had never had access to professional medical care.",
-    date: "December 15, 2025",
+    title: "Bringing Hope & Healing: Our Upcoming Medical Mission Needs Your Support",
+    excerpt: "We are preparing for a life-changing medical outreach to underserved communities in Ghana. Your support can help us bring healthcare to those who need it most.",
+    date: "January 20, 2026",
     category: "Medical Missions",
     image: medicalOutreach,
+    fullContent: `Every year, thousands of people in remote communities across Ghana go without basic healthcare. Many have never seen a doctor in their lives. Children suffer from preventable diseases, mothers give birth without medical assistance, and the elderly endure pain that could easily be treated with proper care.
+
+This is why Mission House Ghana is planning our most ambitious Medical Outreach yet — and we need your help to make it happen.
+
+**Our Vision for This Outreach**
+
+We are preparing to send a team of dedicated medical professionals, including doctors, nurses, pharmacists, and health educators, to reach communities in the Northern and Upper East Regions of Ghana. These are areas where healthcare facilities are scarce, and many families walk for hours just to access basic treatment.
+
+Our goal is to provide:
+- Free medical consultations and treatments
+- Essential medications and health supplies
+- Health education on disease prevention
+- Maternal and child health services
+- Eye screenings and reading glasses for the elderly
+
+**Why We Need You**
+
+This mission requires resources — medications, transportation, equipment, and logistics. We cannot do this alone. Every contribution, no matter how small, brings us closer to touching a life and transforming a community.
+
+Your gift of **$25** can provide medication for a family. **$50** can cover a child's complete health checkup. **$100** can sponsor transportation for our medical team to reach a remote village.
+
+**Join Us in This Mission**
+
+Will you partner with us to bring hope and healing to those who have been forgotten? Together, we can be the hands and feet of Christ, bringing wholistic care to the body, soul, and spirit.
+
+Click below to donate and be part of this life-saving mission. Every gift matters. Every life counts.
+
+*"Heal the sick... and tell them, 'The kingdom of God has come near to you.'" — Luke 10:9*`,
   },
   {
     id: 2,
@@ -47,17 +82,41 @@ const blogPosts = [
     category: "Evangelism",
     image: worshipService,
   },
-  {
-    id: 6,
-    title: "Clean Water Project Completed in Eastern Region",
-    excerpt: "A new borehole now provides clean drinking water to a community of 2,000 people who previously walked miles for water.",
-    date: "November 10, 2025",
-    category: "Community Development",
-    image: communityOutreach,
-  },
 ];
 
 const Blog = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const featuredPost = blogPosts[0];
+
+  const formatContent = (content: string) => {
+    return content.split('\n\n').map((paragraph, index) => {
+      // Handle bold text
+      const formattedText = paragraph.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+      // Handle italic text
+      const finalText = formattedText.replace(/\*(.*?)\*/g, '<em>$1</em>');
+      
+      // Check if it's a list
+      if (paragraph.startsWith('- ')) {
+        const items = paragraph.split('\n').map(item => item.replace('- ', ''));
+        return (
+          <ul key={index} className="list-disc list-inside space-y-1 my-4 text-muted-foreground">
+            {items.map((item, i) => (
+              <li key={i}>{item}</li>
+            ))}
+          </ul>
+        );
+      }
+      
+      return (
+        <p 
+          key={index} 
+          className="text-muted-foreground mb-4"
+          dangerouslySetInnerHTML={{ __html: finalText }}
+        />
+      );
+    });
+  };
+
   return (
     <div className="flex flex-col">
       {/* Hero Section */}
@@ -84,8 +143,8 @@ const Blog = () => {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="relative">
               <img
-                src={blogPosts[0].image}
-                alt={blogPosts[0].title}
+                src={featuredPost.image}
+                alt={featuredPost.title}
                 className="rounded-2xl shadow-elevated w-full aspect-[4/3] object-cover"
               />
               <div className="absolute top-4 left-4 bg-gold text-cream px-4 py-1 rounded-full text-sm font-medium">
@@ -94,19 +153,19 @@ const Blog = () => {
             </div>
             <div>
               <div className="flex items-center gap-4 mb-4">
-                <span className="text-gold font-medium">{blogPosts[0].category}</span>
+                <span className="text-gold font-medium">{featuredPost.category}</span>
                 <span className="text-muted-foreground flex items-center gap-1">
                   <Calendar className="w-4 h-4" />
-                  {blogPosts[0].date}
+                  {featuredPost.date}
                 </span>
               </div>
               <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-4">
-                {blogPosts[0].title}
+                {featuredPost.title}
               </h2>
               <p className="text-muted-foreground text-lg mb-6">
-                {blogPosts[0].excerpt}
+                {featuredPost.excerpt}
               </p>
-              <Button variant="gold">
+              <Button variant="gold" onClick={() => setIsModalOpen(true)}>
                 Read Full Story
                 <ArrowRight className="w-4 h-4" />
               </Button>
@@ -114,6 +173,42 @@ const Blog = () => {
           </div>
         </div>
       </section>
+
+      {/* Full Story Modal */}
+      <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
+        <DialogContent className="max-w-3xl max-h-[85vh] overflow-y-auto">
+          <DialogHeader>
+            <div className="flex items-center gap-4 mb-2">
+              <span className="text-gold font-medium text-sm">{featuredPost.category}</span>
+              <span className="text-muted-foreground text-sm flex items-center gap-1">
+                <Calendar className="w-3 h-3" />
+                {featuredPost.date}
+              </span>
+            </div>
+            <DialogTitle className="font-display text-2xl md:text-3xl font-bold text-foreground">
+              {featuredPost.title}
+            </DialogTitle>
+          </DialogHeader>
+          <div className="mt-4">
+            <img
+              src={featuredPost.image}
+              alt={featuredPost.title}
+              className="rounded-xl w-full aspect-video object-cover mb-6"
+            />
+            <div className="prose prose-lg">
+              {featuredPost.fullContent && formatContent(featuredPost.fullContent)}
+            </div>
+            <div className="mt-8 pt-6 border-t">
+              <Link to="/donate">
+                <Button variant="gold" size="lg" className="w-full">
+                  Support This Mission
+                  <ArrowRight className="w-4 h-4" />
+                </Button>
+              </Link>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
 
       {/* Blog Grid */}
       <section className="py-20 bg-background">
