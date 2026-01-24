@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Heart, Users, HandHeart, ChevronRight, BookOpen, Stethoscope, GraduationCap, Church } from "lucide-react";
 import heroImage from "@/assets/community-gathering.jpg";
-import communityOutreach from "@/assets/community-gathering.jpg";
+import communityDevelopment from "@/assets/community-development.jpg";
 import medicalOutreach from "@/assets/medical-mission-home.jpg";
 import worshipService from "@/assets/community-gathering.jpg";
 import educationProgram from "@/assets/education-support.jpg";
@@ -113,7 +113,7 @@ const Index = () => {
                 icon: HandHeart,
                 title: "Community Development",
                 description: "Empowering communities through sustainable development projects.",
-                image: communityOutreach,
+                image: communityDevelopment,
               },
             ].map((item, index) => (
               <div
