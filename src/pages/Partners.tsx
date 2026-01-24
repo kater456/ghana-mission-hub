@@ -105,7 +105,6 @@ const Partners = () => {
                   "Corporate recognition",
                   "Impact reports",
                   "Employee engagement opportunities",
-                  "Tax-deductible contributions",
                   "CSR partnership",
                 ],
               },
@@ -168,9 +167,8 @@ const Partners = () => {
                 We are committed to the highest standards of financial integrity and accountability. Every donation is handled with care and used efficiently to maximize impact.
               </p>
               <ul className="space-y-4">
-                {[
+              {[
                   "Regular financial reporting",
-                  "Independent audits",
                   "Transparent fund allocation",
                   "Direct communication with donors",
                   "Measurable impact metrics",
