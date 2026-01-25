@@ -220,40 +220,55 @@ const Donate = () => {
           </div>
 
           <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-            {[
-              {
-                title: "Bank Transfer",
-                description: "Contact us for our bank account details for direct transfers.",
-              },
-              {
-                title: "Check",
-                description: "Mail checks to our office address made payable to Mission House Ghana.",
-              },
-              {
-                title: "Legacy Giving",
-                description: "Include Mission House Ghana in your will or estate plans.",
-              },
-            ].map((item, index) => (
-              <div
-                key={index}
-                className="bg-card p-6 rounded-2xl shadow-soft text-center"
+            {/* Bank Transfer */}
+            <div className="bg-card p-6 rounded-2xl shadow-soft text-center">
+              <h3 className="font-display text-lg font-bold text-foreground mb-3">
+                Bank Transfer
+              </h3>
+              <p className="text-muted-foreground text-sm mb-4">
+                Contact us for our bank account details for direct transfers.
+              </p>
+              <Button 
+                variant="outline" 
+                size="sm"
+                onClick={() => setShowBankDialog(true)}
               >
-                <h3 className="font-display text-lg font-bold text-foreground mb-3">
-                  {item.title}
-                </h3>
-                <p className="text-muted-foreground text-sm mb-4">
-                  {item.description}
-                </p>
-                <Button 
-                  variant="outline" 
-                  size="sm"
-                  onClick={() => setShowBankDialog(true)}
-                >
+                Learn More
+                <ChevronRight className="w-4 h-4" />
+              </Button>
+            </div>
+
+            {/* Check */}
+            <div className="bg-card p-6 rounded-2xl shadow-soft text-center">
+              <h3 className="font-display text-lg font-bold text-foreground mb-3">
+                Check
+              </h3>
+              <p className="text-muted-foreground text-sm mb-4">
+                Mail checks to our office address made payable to Mission House Ghana.
+              </p>
+              <Button asChild variant="outline" size="sm">
+                <Link to="/contact">
                   Learn More
                   <ChevronRight className="w-4 h-4" />
-                </Button>
-              </div>
-            ))}
+                </Link>
+              </Button>
+            </div>
+
+            {/* Legacy Giving */}
+            <div className="bg-card p-6 rounded-2xl shadow-soft text-center">
+              <h3 className="font-display text-lg font-bold text-foreground mb-3">
+                Legacy Giving
+              </h3>
+              <p className="text-muted-foreground text-sm mb-4">
+                Include Mission House Ghana in your will or estate plans.
+              </p>
+              <Button asChild variant="outline" size="sm">
+                <Link to="/contact">
+                  Learn More
+                  <ChevronRight className="w-4 h-4" />
+                </Link>
+              </Button>
+            </div>
           </div>
         </div>
       </section>
