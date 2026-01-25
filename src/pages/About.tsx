@@ -211,8 +211,11 @@ const About = () => {
             <h3 className="font-display text-xl font-bold text-foreground mb-4">
               Leadership Values
             </h3>
-            <p className="text-muted-foreground mb-6">
+            <p className="text-muted-foreground mb-4">
               Our leaders exemplify the values of servanthood modeled by Jesus Christ. They are committed to integrity, accountability, and the spiritual growth of all team members. Through prayer, wisdom, and collaborative decision-making, they guide Mission House Ghana toward fulfilling its divine mandate.
+            </p>
+            <p className="text-foreground font-semibold mb-6">
+              The current field leader is <span className="text-gold">Erdoo Akase</span>.
             </p>
             <Button asChild variant="outline">
               <Link to="/contact">
