@@ -2,10 +2,17 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Heart, ChevronRight, CreditCard, Building, Repeat, Gift } from "lucide-react";
 import { useState } from "react";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 
 const donationAmounts = [25, 50, 100, 250, 500, 1000];
 
 const Donate = () => {
+  const [showBankDialog, setShowBankDialog] = useState(false);
   const [selectedAmount, setSelectedAmount] = useState<number | null>(100);
   const [customAmount, setCustomAmount] = useState("");
   const [donationType, setDonationType] = useState<"one-time" | "monthly">("one-time");
@@ -237,17 +244,50 @@ const Donate = () => {
                 <p className="text-muted-foreground text-sm mb-4">
                   {item.description}
                 </p>
-                <Button asChild variant="outline" size="sm">
-                  <Link to="/contact">
-                    Learn More
-                    <ChevronRight className="w-4 h-4" />
-                  </Link>
+                <Button 
+                  variant="outline" 
+                  size="sm"
+                  onClick={() => setShowBankDialog(true)}
+                >
+                  Learn More
+                  <ChevronRight className="w-4 h-4" />
                 </Button>
               </div>
             ))}
           </div>
         </div>
       </section>
+
+      {/* Bank Details Dialog */}
+      <Dialog open={showBankDialog} onOpenChange={setShowBankDialog}>
+        <DialogContent className="max-w-md">
+          <DialogHeader>
+            <DialogTitle className="font-display text-xl text-foreground flex items-center gap-2">
+              <Building className="w-5 h-5 text-gold" />
+              Cedis Bank Transfer Details
+            </DialogTitle>
+          </DialogHeader>
+          <div className="bg-gradient-to-r from-gold/10 to-terracotta/10 p-6 rounded-xl border border-gold/20">
+            <div className="space-y-4 text-foreground">
+              <div className="flex justify-between items-center py-2 border-b border-border/50">
+                <span className="text-muted-foreground">Bank:</span>
+                <span className="font-semibold">ADB</span>
+              </div>
+              <div className="flex justify-between items-center py-2 border-b border-border/50">
+                <span className="text-muted-foreground">Account Number:</span>
+                <span className="font-semibold font-mono">2000156280602</span>
+              </div>
+              <div className="flex justify-between items-center py-2">
+                <span className="text-muted-foreground">Account Name:</span>
+                <span className="font-semibold">Erdoo Akase</span>
+              </div>
+            </div>
+          </div>
+          <p className="text-sm text-muted-foreground text-center">
+            Thank you for your generous support!
+          </p>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
