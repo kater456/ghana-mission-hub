@@ -84,8 +84,8 @@ Click below to donate and be part of this life-saving mission. Every gift matter
   },
   {
     id: 3,
-    title: "New Church Planted in Kumasi Region",
-    excerpt: "After months of evangelism and discipleship, a new congregation has been established with 75 founding members.",
+    title: "New Church Planted in Northern Ghana",
+    excerpt: "After months of evangelism and discipleship in Konkomba and Kusasi lands, a new congregation has been established with 75 founding members.",
     date: "December 10, 2025",
     category: "Church Planting",
     image: worshipService,
