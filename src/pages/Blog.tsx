@@ -12,10 +12,42 @@ import communityOutreach from "@/assets/community-outreach.jpg";
 import medicalOutreach from "@/assets/medical-outreach.jpg";
 import worshipService from "@/assets/worship-service.jpg";
 import educationProgram from "@/assets/education-program.jpg";
+import lawackMissionHouse from "@/assets/lawack-mission-house.jpeg";
 
 const blogPosts = [
   {
     id: 1,
+    title: "Breaking Ground in Lawack: Our New Mission House",
+    excerpt: "We are excited to share a significant milestone in our mission journey—the establishment of a mission house in Lawack, marking an important step forward in strengthening mission work and community service in the area.",
+    date: "January 26, 2026",
+    category: "Community Development",
+    image: lawackMissionHouse,
+    fullContent: `We are excited to share a significant milestone in our mission journey—the establishment of a mission house in Lawack. This project marks an important step forward in strengthening mission work and community service in the area.
+
+The land for this mission house was generously given to us by the local chief. In Lawack, land is traditionally claimed and secured by putting up a structure, and with this understanding, we have taken intentional steps to begin development. This mission house is our first declaration of presence, purpose, and long-term commitment to the community.
+
+**Purpose of the Mission House**
+
+The mission house is designed to serve as accommodation for missionaries, staff, and trainees who come to work in Lawack. It will provide a safe and comfortable place to rest, plan, and store mission resources, enabling those on the field to work more effectively and sustainably.
+
+**Progress So Far**
+
+We have already made encouraging progress. Over two thousand blocks are on the ground, with some cement prepared, signaling our readiness to move forward and hit the ground running. This foundational work sets the stage for a larger vision: in the coming years, we hope to construct a well-equipped auditorium that will host trainings, gatherings, and community-centered programs.
+
+**Future Plans**
+
+In addition, we are planning to establish a clinic on the same land to serve the people of Lawack and surrounding communities, where access to healthcare is limited. This reflects our commitment to holistic mission—caring for both spiritual and physical needs.
+
+**Partner With Us**
+
+As we take these bold steps, we are also seeking support and partnership to help us carry this vision through to completion. With collective effort and shared purpose, this mission house will grow into a center of service, training, and hope for generations to come.
+
+Together, we are not just building structures—we are building a future for Lawack.
+
+*"Unless the Lord builds the house, the builders labor in vain." — Psalm 127:1*`,
+  },
+  {
+    id: 2,
     title: "Bringing Hope & Healing: Our Upcoming Medical Mission Needs Your Support",
     excerpt: "We are preparing for a life-changing medical outreach to underserved communities in Ghana. Your support can help us bring healthcare to those who need it most.",
     date: "January 20, 2026",
@@ -51,7 +83,7 @@ Click below to donate and be part of this life-saving mission. Every gift matter
 *"Heal the sick... and tell them, 'The kingdom of God has come near to you.'" — Luke 10:9*`,
   },
   {
-    id: 2,
+    id: 3,
     title: "New Church Planted in Kumasi Region",
     excerpt: "After months of evangelism and discipleship, a new congregation has been established with 75 founding members.",
     date: "December 10, 2025",
@@ -59,7 +91,7 @@ Click below to donate and be part of this life-saving mission. Every gift matter
     image: worshipService,
   },
   {
-    id: 3,
+    id: 4,
     title: "Back-to-School Campaign Helps 200 Children",
     excerpt: "Our annual education campaign provided school supplies, uniforms, and scholarships to 200 children from low-income families.",
     date: "December 1, 2025",
@@ -67,7 +99,7 @@ Click below to donate and be part of this life-saving mission. Every gift matter
     image: educationProgram,
   },
   {
-    id: 4,
+    id: 5,
     title: "Women's Empowerment Workshop Transforms Lives",
     excerpt: "Thirty women completed our vocational training program, learning skills that will help them support their families.",
     date: "November 25, 2025",
@@ -75,7 +107,7 @@ Click below to donate and be part of this life-saving mission. Every gift matter
     image: communityOutreach,
   },
   {
-    id: 5,
+    id: 6,
     title: "Youth Conference Draws Record Attendance",
     excerpt: "Over 1,000 young people gathered for our annual youth conference focused on purpose, faith, and service.",
     date: "November 18, 2025",
