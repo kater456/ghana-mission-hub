@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ChevronRight, Calendar, ArrowRight, X } from "lucide-react";
+import { ChevronRight, Calendar, ArrowRight } from "lucide-react";
+import NewsletterSection from "@/components/blog/NewsletterSection";
 import {
   Dialog,
   DialogContent,
@@ -294,26 +295,7 @@ const Blog = () => {
       </section>
 
       {/* Newsletter */}
-      <section className="py-20 bg-gradient-to-r from-gold to-terracotta">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="font-display text-3xl md:text-4xl font-bold text-cream mb-4">
-            Stay Connected
-          </h2>
-          <p className="text-cream/90 text-lg max-w-2xl mx-auto mb-8">
-            Subscribe to our newsletter for updates, prayer requests, and inspiring stories from the field.
-          </p>
-          <div className="max-w-md mx-auto flex gap-3">
-            <input
-              type="email"
-              placeholder="Enter your email"
-              className="flex-1 px-6 py-4 rounded-xl bg-cream/10 border border-cream/30 text-cream placeholder:text-cream/60 focus:outline-none focus:ring-2 focus:ring-cream/50"
-            />
-            <Button variant="default" size="lg" className="bg-cream text-earth hover:bg-cream/90">
-              Subscribe
-            </Button>
-          </div>
-        </div>
-      </section>
+      <NewsletterSection />
     </div>
   );
 };
