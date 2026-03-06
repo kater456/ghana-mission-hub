@@ -225,6 +225,9 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Mission Updates */}
+      <MissionUpdates />
+
       {/* Get Involved CTA */}
       <section className="py-20 bg-background">
         <div className="container mx-auto px-4">
