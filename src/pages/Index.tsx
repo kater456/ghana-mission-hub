@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Heart, Users, HandHeart, ChevronRight, BookOpen, Stethoscope, GraduationCap, Church } from "lucide-react";
+import MissionUpdates from "@/components/MissionUpdates";
 import heroImage from "@/assets/community-gathering.jpg";
 import communityDevelopment from "@/assets/community-development.jpg";
 import medicalOutreach from "@/assets/medical-mission-home.jpg";
