@@ -117,18 +117,21 @@ Click below to donate and be part of this life-saving mission. Every gift matter
   },
 ];
 
+const POSTS_PER_PAGE = 3;
+
 const Blog = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedPost, setSelectedPost] = useState<typeof blogPosts[0] | null>(null);
+  const [visibleCount, setVisibleCount] = useState(POSTS_PER_PAGE);
   const featuredPost = blogPosts[0];
+  const remainingPosts = blogPosts.slice(1);
+  const visiblePosts = remainingPosts.slice(0, visibleCount);
+  const hasMore = visibleCount < remainingPosts.length;
 
   const formatContent = (content: string) => {
     return content.split('\n\n').map((paragraph, index) => {
-      // Handle bold text
       const formattedText = paragraph.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-      // Handle italic text
       const finalText = formattedText.replace(/\*(.*?)\*/g, '<em>$1</em>');
       
-      // Check if it's a list
       if (paragraph.startsWith('- ')) {
         const items = paragraph.split('\n').map(item => item.replace('- ', ''));
         return (
@@ -198,38 +201,45 @@ const Blog = () => {
               <p className="text-muted-foreground text-lg mb-6">
                 {featuredPost.excerpt}
               </p>
-              <Button variant="gold" onClick={() => setIsModalOpen(true)}>
-                Read Full Story
-                <ArrowRight className="w-4 h-4" />
-              </Button>
+              {featuredPost.fullContent ? (
+                <Button variant="gold" onClick={() => setSelectedPost(featuredPost)}>
+                  Read Full Story
+                  <ArrowRight className="w-4 h-4" />
+                </Button>
+              ) : (
+                <p className="text-muted-foreground italic text-sm">Full story coming soon.</p>
+              )}
             </div>
           </div>
         </div>
       </section>
 
       {/* Full Story Modal */}
-      <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
+      <Dialog open={!!selectedPost} onOpenChange={(open) => !open && setSelectedPost(null)}>
         <DialogContent className="max-w-3xl max-h-[85vh] overflow-y-auto">
           <DialogHeader>
             <div className="flex items-center gap-4 mb-2">
-              <span className="text-gold font-medium text-sm">{featuredPost.category}</span>
+              <span className="text-gold font-medium text-sm">{selectedPost?.category}</span>
               <span className="text-muted-foreground text-sm flex items-center gap-1">
                 <Calendar className="w-3 h-3" />
-                {featuredPost.date}
+                {selectedPost?.date}
               </span>
             </div>
             <DialogTitle className="font-display text-2xl md:text-3xl font-bold text-foreground">
-              {featuredPost.title}
+              {selectedPost?.title}
             </DialogTitle>
           </DialogHeader>
           <div className="mt-4">
             <img
-              src={featuredPost.image}
-              alt={featuredPost.title}
+              src={selectedPost?.image}
+              alt={selectedPost?.title}
               className="rounded-xl w-full aspect-video object-cover mb-6"
             />
             <div className="prose prose-lg">
-              {featuredPost.fullContent && formatContent(featuredPost.fullContent)}
+              {selectedPost?.fullContent
+                ? formatContent(selectedPost.fullContent)
+                : <p className="text-muted-foreground">{selectedPost?.excerpt}</p>
+              }
             </div>
             <div className="mt-8 pt-6 border-t">
               <Link to="/donate">
@@ -253,10 +263,11 @@ const Blog = () => {
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {blogPosts.slice(1).map((post) => (
+            {visiblePosts.map((post) => (
               <article
                 key={post.id}
-                className="bg-card rounded-2xl overflow-hidden shadow-soft hover:shadow-elevated transition-all group"
+                className="bg-card rounded-2xl overflow-hidden shadow-soft hover:shadow-elevated transition-all group cursor-pointer"
+                onClick={() => setSelectedPost(post)}
               >
                 <div className="aspect-[16/10] overflow-hidden">
                   <img
@@ -276,20 +287,24 @@ const Blog = () => {
                   <p className="text-muted-foreground text-sm line-clamp-2 mb-4">
                     {post.excerpt}
                   </p>
-                  <Button variant="link" className="p-0 h-auto text-gold">
+                  <span className="text-gold text-sm font-medium group-hover:underline inline-flex items-center gap-1">
                     Read More
                     <ArrowRight className="w-4 h-4" />
-                  </Button>
+                  </span>
                 </div>
               </article>
             ))}
           </div>
 
           <div className="text-center mt-12">
-            <Button variant="outline" size="lg">
-              Load More Stories
-              <ChevronRight className="w-4 h-4" />
-            </Button>
+            {hasMore ? (
+              <Button variant="outline" size="lg" onClick={() => setVisibleCount((prev) => prev + POSTS_PER_PAGE)}>
+                Load More Stories
+                <ChevronRight className="w-4 h-4" />
+              </Button>
+            ) : (
+              <p className="text-muted-foreground italic">You've reached the end — no more stories for now.</p>
+            )}
           </div>
         </div>
       </section>
