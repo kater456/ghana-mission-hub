@@ -1,9 +1,12 @@
 import { Link } from "react-router-dom";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { ChevronRight, Heart, Users, Plane, PenTool, Megaphone, HandHeart } from "lucide-react";
+import { ChevronRight, ChevronDown, Heart, Users, Plane, PenTool, Megaphone, HandHeart } from "lucide-react";
 import communityOutreach from "@/assets/community-outreach.jpg";
+import { Reveal } from "@/hooks/use-reveal";
 
 const GetInvolved = () => {
+  const [openFaq, setOpenFaq] = useState<number | null>(0);
   return (
     <div className="flex flex-col">
       {/* Hero Section */}
@@ -79,26 +82,25 @@ const GetInvolved = () => {
                 link: "/contact",
               },
             ].map((item, index) => (
-              <div
-                key={index}
-                className="bg-card p-8 rounded-2xl shadow-soft hover:shadow-elevated transition-all group"
-              >
-                <div className="w-14 h-14 rounded-2xl bg-gold/10 flex items-center justify-center mb-6 group-hover:bg-gold/20 transition-colors">
-                  <item.icon className="w-7 h-7 text-gold" />
+              <Reveal key={index} delay={index * 80}>
+                <div className="bg-card p-8 rounded-2xl shadow-soft hover:shadow-elevated hover:-translate-y-2 transition-all duration-300 group h-full flex flex-col">
+                  <div className="w-14 h-14 rounded-2xl bg-gold/10 flex items-center justify-center mb-6 group-hover:bg-gold/20 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
+                    <item.icon className="w-7 h-7 text-gold" />
+                  </div>
+                  <h3 className="font-display text-xl font-bold text-foreground mb-3">
+                    {item.title}
+                  </h3>
+                  <p className="text-muted-foreground mb-6 flex-1">
+                    {item.description}
+                  </p>
+                  <Button asChild variant="outline" className="w-fit group/btn">
+                    <Link to={item.link}>
+                      {item.action}
+                      <ChevronRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+                    </Link>
+                  </Button>
                 </div>
-                <h3 className="font-display text-xl font-bold text-foreground mb-3">
-                  {item.title}
-                </h3>
-                <p className="text-muted-foreground mb-6">
-                  {item.description}
-                </p>
-                <Button asChild variant="outline">
-                  <Link to={item.link}>
-                    {item.action}
-                    <ChevronRight className="w-4 h-4" />
-                  </Link>
-                </Button>
-              </div>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -184,19 +186,39 @@ const GetInvolved = () => {
                 question: "Can I support a specific program?",
                 answer: "Yes! You can designate your donation to a specific program such as education, medical missions, or church planting. Contact us to learn more about targeted giving.",
               },
-            ].map((faq, index) => (
-              <div
-                key={index}
-                className="bg-card p-6 rounded-2xl shadow-soft"
-              >
-                <h3 className="font-display text-lg font-bold text-foreground mb-3">
-                  {faq.question}
-                </h3>
-                <p className="text-muted-foreground">
-                  {faq.answer}
-                </p>
-              </div>
-            ))}
+            ].map((faq, index) => {
+              const isOpen = openFaq === index;
+              return (
+                <Reveal key={index} delay={index * 60}>
+                  <div className="bg-card rounded-2xl shadow-soft hover:shadow-elevated transition-shadow overflow-hidden">
+                    <button
+                      type="button"
+                      onClick={() => setOpenFaq(isOpen ? null : index)}
+                      aria-expanded={isOpen}
+                      className="w-full flex items-center justify-between gap-4 p-6 text-left"
+                    >
+                      <h3 className="font-display text-lg font-bold text-foreground">
+                        {faq.question}
+                      </h3>
+                      <ChevronDown
+                        className={`w-5 h-5 text-gold flex-shrink-0 transition-transform duration-300 ${
+                          isOpen ? "rotate-180" : ""
+                        }`}
+                      />
+                    </button>
+                    <div
+                      className={`grid transition-all duration-500 ease-out ${
+                        isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+                      }`}
+                    >
+                      <p className="overflow-hidden text-muted-foreground px-6 pb-6">
+                        {faq.answer}
+                      </p>
+                    </div>
+                  </div>
+                </Reveal>
+              );
+            })}
           </div>
 
           <div className="text-center mt-12">

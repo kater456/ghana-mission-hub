@@ -4,6 +4,7 @@ import { ChevronRight, Heart, Users, Shield, Handshake, Lightbulb, MapPin, Churc
 import outreach from "@/assets/outreach.jpg";
 import northernOutreach from "@/assets/northern-outreach.jpg";
 import schoolOutreach from "@/assets/school-outreach.jpg";
+import { Reveal } from "@/hooks/use-reveal";
 const About = () => {
   return (
     <div className="flex flex-col">
@@ -29,7 +30,7 @@ const About = () => {
       <section className="py-20 bg-cream">
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
+            <Reveal>
               <p className="text-gold font-medium mb-3">Our Journey</p>
               <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-6">
                 Founded on Faith, Driven by Love
@@ -48,15 +49,19 @@ const About = () => {
                   Today, we continue to build on this foundation, partnering with churches, donors, and volunteers worldwide to expand our reach to unreached people groups and deepen our impact.
                 </p>
               </div>
-            </div>
-            <div className="relative">
-              <img
-                src={outreach}
-                alt="Church worship in northern Ghana"
-                className="rounded-2xl shadow-elevated"
-              />
-              <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-gradient-to-br from-gold to-terracotta rounded-2xl opacity-50" />
-            </div>
+            </Reveal>
+            <Reveal delay={150}>
+              <div className="relative group">
+                <div className="overflow-hidden rounded-2xl shadow-elevated">
+                  <img
+                    src={outreach}
+                    alt="Church worship in northern Ghana"
+                    className="w-full transition-transform duration-700 group-hover:scale-105"
+                  />
+                </div>
+                <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-gradient-to-br from-gold to-terracotta rounded-2xl opacity-50 group-hover:opacity-80 transition-opacity" />
+              </div>
+            </Reveal>
           </div>
         </div>
       </section>
@@ -94,60 +99,34 @@ const About = () => {
           </div>
 
           <div className="grid md:grid-cols-2 gap-8">
-            <div className="bg-card p-8 rounded-2xl shadow-soft">
-              <h3 className="font-display text-xl font-bold text-foreground mb-4">
-                What We Believe
-              </h3>
-              <ul className="space-y-3 text-muted-foreground">
-                <li className="flex items-start gap-3">
-                  <div className="w-2 h-2 rounded-full bg-gold mt-2" />
-                  <span>The Bible as the inspired, infallible Word of God</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <div className="w-2 h-2 rounded-full bg-gold mt-2" />
-                  <span>Salvation through faith in Jesus Christ alone</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <div className="w-2 h-2 rounded-full bg-gold mt-2" />
-                  <span>The Great Commission to make disciples of all nations</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <div className="w-2 h-2 rounded-full bg-gold mt-2" />
-                  <span>The power of the Holy Spirit to transform lives</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <div className="w-2 h-2 rounded-full bg-gold mt-2" />
-                  <span>The call to serve the poor and marginalized</span>
-                </li>
-              </ul>
-            </div>
-            <div className="bg-card p-8 rounded-2xl shadow-soft">
-              <h3 className="font-display text-xl font-bold text-foreground mb-4">
-                Our Approach
-              </h3>
-              <ul className="space-y-3 text-muted-foreground">
-                <li className="flex items-start gap-3">
-                  <div className="w-2 h-2 rounded-full bg-terracotta mt-2" />
-                  <span>Wholistic ministry addressing spiritual and physical needs</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <div className="w-2 h-2 rounded-full bg-terracotta mt-2" />
-                  <span>Partnership with local churches and communities</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <div className="w-2 h-2 rounded-full bg-terracotta mt-2" />
-                  <span>Training and equipping local leaders</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <div className="w-2 h-2 rounded-full bg-terracotta mt-2" />
-                  <span>Sustainable, community-driven development</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <div className="w-2 h-2 rounded-full bg-terracotta mt-2" />
-                  <span>Accountability and transparency in all operations</span>
-                </li>
-              </ul>
-            </div>
+            <Reveal>
+              <div className="bg-card p-8 rounded-2xl shadow-soft hover:shadow-elevated hover:-translate-y-1 transition-all duration-300 h-full">
+                <h3 className="font-display text-xl font-bold text-foreground mb-4">
+                  What We Believe
+                </h3>
+                <ul className="space-y-3 text-muted-foreground">
+                  <li className="flex items-start gap-3"><div className="w-2 h-2 rounded-full bg-gold mt-2" /><span>The Bible as the inspired, infallible Word of God</span></li>
+                  <li className="flex items-start gap-3"><div className="w-2 h-2 rounded-full bg-gold mt-2" /><span>Salvation through faith in Jesus Christ alone</span></li>
+                  <li className="flex items-start gap-3"><div className="w-2 h-2 rounded-full bg-gold mt-2" /><span>The Great Commission to make disciples of all nations</span></li>
+                  <li className="flex items-start gap-3"><div className="w-2 h-2 rounded-full bg-gold mt-2" /><span>The power of the Holy Spirit to transform lives</span></li>
+                  <li className="flex items-start gap-3"><div className="w-2 h-2 rounded-full bg-gold mt-2" /><span>The call to serve the poor and marginalized</span></li>
+                </ul>
+              </div>
+            </Reveal>
+            <Reveal delay={120}>
+              <div className="bg-card p-8 rounded-2xl shadow-soft hover:shadow-elevated hover:-translate-y-1 transition-all duration-300 h-full">
+                <h3 className="font-display text-xl font-bold text-foreground mb-4">
+                  Our Approach
+                </h3>
+                <ul className="space-y-3 text-muted-foreground">
+                  <li className="flex items-start gap-3"><div className="w-2 h-2 rounded-full bg-terracotta mt-2" /><span>Wholistic ministry addressing spiritual and physical needs</span></li>
+                  <li className="flex items-start gap-3"><div className="w-2 h-2 rounded-full bg-terracotta mt-2" /><span>Partnership with local churches and communities</span></li>
+                  <li className="flex items-start gap-3"><div className="w-2 h-2 rounded-full bg-terracotta mt-2" /><span>Training and equipping local leaders</span></li>
+                  <li className="flex items-start gap-3"><div className="w-2 h-2 rounded-full bg-terracotta mt-2" /><span>Sustainable, community-driven development</span></li>
+                  <li className="flex items-start gap-3"><div className="w-2 h-2 rounded-full bg-terracotta mt-2" /><span>Accountability and transparency in all operations</span></li>
+                </ul>
+              </div>
+            </Reveal>
           </div>
         </div>
       </section>
@@ -170,20 +149,19 @@ const About = () => {
               { icon: Handshake, title: "Compassion", description: "Moved by love to meet the needs of others" },
               { icon: Lightbulb, title: "Faith", description: "Trusting God's guidance in all circumstances" },
             ].map((value, index) => (
-              <div
-                key={index}
-                className="bg-card p-6 rounded-2xl shadow-soft text-center group hover:shadow-elevated transition-all"
-              >
-                <div className="w-14 h-14 rounded-2xl bg-gold/10 flex items-center justify-center mx-auto mb-4 group-hover:bg-gold/20 transition-colors">
-                  <value.icon className="w-7 h-7 text-gold" />
+              <Reveal key={index} delay={index * 70}>
+                <div className="bg-card p-6 rounded-2xl shadow-soft text-center group hover:shadow-elevated hover:-translate-y-2 transition-all duration-300 h-full">
+                  <div className="w-14 h-14 rounded-2xl bg-gold/10 flex items-center justify-center mx-auto mb-4 group-hover:bg-gold/20 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
+                    <value.icon className="w-7 h-7 text-gold" />
+                  </div>
+                  <h3 className="font-display text-lg font-bold text-foreground mb-2">
+                    {value.title}
+                  </h3>
+                  <p className="text-muted-foreground text-sm">
+                    {value.description}
+                  </p>
                 </div>
-                <h3 className="font-display text-lg font-bold text-foreground mb-2">
-                  {value.title}
-                </h3>
-                <p className="text-muted-foreground text-sm">
-                  {value.description}
-                </p>
-              </div>
+              </Reveal>
             ))}
           </div>
         </div>

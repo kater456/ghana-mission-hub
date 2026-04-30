@@ -1,6 +1,37 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ChevronRight, Church, Building, Users, Heart, Globe, Handshake } from "lucide-react";
+import { Reveal, useReveal } from "@/hooks/use-reveal";
+
+const DonationChart = () => {
+  const { ref, visible } = useReveal<HTMLDivElement>();
+  const items = [
+    { label: "Programs & Ministry", percent: 75 },
+    { label: "Administration", percent: 15 },
+    { label: "Fundraising", percent: 10 },
+  ];
+  return (
+    <div ref={ref} className="space-y-4">
+      {items.map((item, index) => (
+        <div key={index}>
+          <div className="flex justify-between mb-2">
+            <span className="text-foreground font-medium">{item.label}</span>
+            <span className="text-gold font-bold">{item.percent}%</span>
+          </div>
+          <div className="h-3 bg-muted rounded-full overflow-hidden">
+            <div
+              className="h-full bg-gradient-to-r from-gold to-terracotta rounded-full transition-all duration-1000 ease-out"
+              style={{
+                width: visible ? `${item.percent}%` : "0%",
+                transitionDelay: `${index * 150}ms`,
+              }}
+            />
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+};
 
 const Partners = () => {
   return (
@@ -54,20 +85,19 @@ const Partners = () => {
                 description: "We focus on long-term transformation, training local leaders who continue the work for generations.",
               },
             ].map((item, index) => (
-              <div
-                key={index}
-                className="bg-card p-8 rounded-2xl shadow-soft text-center group hover:shadow-elevated transition-all"
-              >
-                <div className="w-16 h-16 rounded-2xl bg-gold/10 flex items-center justify-center mx-auto mb-6 group-hover:bg-gold/20 transition-colors">
-                  <item.icon className="w-8 h-8 text-gold" />
+              <Reveal key={index} delay={index * 100}>
+                <div className="bg-card p-8 rounded-2xl shadow-soft text-center group hover:shadow-elevated hover:-translate-y-2 transition-all duration-300 h-full">
+                  <div className="w-16 h-16 rounded-2xl bg-gold/10 flex items-center justify-center mx-auto mb-6 group-hover:bg-gold/20 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
+                    <item.icon className="w-8 h-8 text-gold" />
+                  </div>
+                  <h3 className="font-display text-xl font-bold text-foreground mb-3">
+                    {item.title}
+                  </h3>
+                  <p className="text-muted-foreground">
+                    {item.description}
+                  </p>
                 </div>
-                <h3 className="font-display text-xl font-bold text-foreground mb-3">
-                  {item.title}
-                </h3>
-                <p className="text-muted-foreground">
-                  {item.description}
-                </p>
-              </div>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -121,34 +151,33 @@ const Partners = () => {
                 ],
               },
             ].map((partner, index) => (
-              <div
-                key={index}
-                className="bg-card p-8 rounded-2xl shadow-soft hover:shadow-elevated transition-all border-t-4 border-gold"
-              >
-                <div className="w-14 h-14 rounded-2xl bg-gold/10 flex items-center justify-center mb-6">
-                  <partner.icon className="w-7 h-7 text-gold" />
+              <Reveal key={index} delay={index * 100}>
+                <div className="bg-card p-8 rounded-2xl shadow-soft hover:shadow-elevated hover:-translate-y-2 transition-all duration-300 border-t-4 border-gold h-full flex flex-col group">
+                  <div className="w-14 h-14 rounded-2xl bg-gold/10 flex items-center justify-center mb-6 group-hover:bg-gold/20 group-hover:scale-110 transition-all duration-300">
+                    <partner.icon className="w-7 h-7 text-gold" />
+                  </div>
+                  <h3 className="font-display text-xl font-bold text-foreground mb-3">
+                    {partner.type}
+                  </h3>
+                  <p className="text-muted-foreground mb-6">
+                    {partner.description}
+                  </p>
+                  <ul className="space-y-2 mb-6 flex-1">
+                    {partner.benefits.map((benefit, i) => (
+                      <li key={i} className="flex items-center gap-2 text-sm text-foreground">
+                        <div className="w-1.5 h-1.5 rounded-full bg-gold" />
+                        {benefit}
+                      </li>
+                    ))}
+                  </ul>
+                  <Button asChild variant="outline" className="w-full">
+                    <Link to="/contact">
+                      Become a Partner
+                      <ChevronRight className="w-4 h-4" />
+                    </Link>
+                  </Button>
                 </div>
-                <h3 className="font-display text-xl font-bold text-foreground mb-3">
-                  {partner.type}
-                </h3>
-                <p className="text-muted-foreground mb-6">
-                  {partner.description}
-                </p>
-                <ul className="space-y-2 mb-6">
-                  {partner.benefits.map((benefit, i) => (
-                    <li key={i} className="flex items-center gap-2 text-sm text-foreground">
-                      <div className="w-1.5 h-1.5 rounded-full bg-gold" />
-                      {benefit}
-                    </li>
-                  ))}
-                </ul>
-                <Button asChild variant="outline" className="w-full">
-                  <Link to="/contact">
-                    Become a Partner
-                    <ChevronRight className="w-4 h-4" />
-                  </Link>
-                </Button>
-              </div>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -186,26 +215,7 @@ const Partners = () => {
               <h3 className="font-display text-xl font-bold text-foreground mb-6 text-center">
                 Your Donation at Work
               </h3>
-              <div className="space-y-4">
-                {[
-                  { label: "Programs & Ministry", percent: 75 },
-                  { label: "Administration", percent: 15 },
-                  { label: "Fundraising", percent: 10 },
-                ].map((item, index) => (
-                  <div key={index}>
-                    <div className="flex justify-between mb-2">
-                      <span className="text-foreground font-medium">{item.label}</span>
-                      <span className="text-gold font-bold">{item.percent}%</span>
-                    </div>
-                    <div className="h-3 bg-muted rounded-full overflow-hidden">
-                      <div
-                        className="h-full bg-gradient-to-r from-gold to-terracotta rounded-full"
-                        style={{ width: `${item.percent}%` }}
-                      />
-                    </div>
-                  </div>
-                ))}
-              </div>
+              <DonationChart />
             </div>
           </div>
         </div>

@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ChevronRight, Target, Eye, BookOpen, Globe, Heart, Users } from "lucide-react";
 import heroImage from "@/assets/hero-image.jpg";
+import { Reveal } from "@/hooks/use-reveal";
 
 const Mission = () => {
   return (
@@ -14,13 +15,15 @@ const Mission = () => {
         </div>
         
         <div className="relative container mx-auto px-4 text-center">
-          <p className="text-gold font-medium mb-4">Our Purpose</p>
-          <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-cream mb-6">
-            Mission & Vision
-          </h1>
-          <p className="text-cream/80 text-lg max-w-2xl mx-auto">
-            Driven by faith, guided by purpose — discover the heart behind everything we do.
-          </p>
+          <Reveal>
+            <p className="text-gold font-medium mb-4">Our Purpose</p>
+            <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-cream mb-6">
+              Mission & Vision
+            </h1>
+            <p className="text-cream/80 text-lg max-w-2xl mx-auto">
+              Driven by faith, guided by purpose — discover the heart behind everything we do.
+            </p>
+          </Reveal>
         </div>
       </section>
 
@@ -28,7 +31,7 @@ const Mission = () => {
       <section className="py-20 bg-cream">
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
+            <Reveal>
               <div className="inline-flex items-center gap-3 bg-gold/10 px-4 py-2 rounded-full mb-6">
                 <Target className="w-5 h-5 text-gold" />
                 <span className="text-gold font-medium">Our Mission</span>
@@ -45,14 +48,16 @@ const Mission = () => {
                 </p>
                 <cite className="text-gold font-medium mt-2 block not-italic">— 1 Corinthians 9:19</cite>
               </blockquote>
-            </div>
-            <div className="relative">
-              <img
-                src={heroImage}
-                alt="Mission work"
-                className="rounded-2xl shadow-elevated"
-              />
-            </div>
+            </Reveal>
+            <Reveal delay={150}>
+              <div className="relative group overflow-hidden rounded-2xl shadow-elevated">
+                <img
+                  src={heroImage}
+                  alt="Mission work"
+                  className="w-full transition-transform duration-700 group-hover:scale-105"
+                />
+              </div>
+            </Reveal>
           </div>
         </div>
       </section>
@@ -60,18 +65,20 @@ const Mission = () => {
       {/* Vision Statement */}
       <section className="py-20 bg-background">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="inline-flex items-center gap-3 bg-terracotta/10 px-4 py-2 rounded-full mb-6">
-              <Eye className="w-5 h-5 text-terracotta" />
-              <span className="text-terracotta font-medium">Our Vision</span>
+          <Reveal>
+            <div className="max-w-4xl mx-auto text-center">
+              <div className="inline-flex items-center gap-3 bg-terracotta/10 px-4 py-2 rounded-full mb-6">
+                <Eye className="w-5 h-5 text-terracotta" />
+                <span className="text-terracotta font-medium">Our Vision</span>
+              </div>
+              <h2 className="font-display text-3xl md:text-5xl font-bold text-foreground mb-8">
+                To See Transformed Lives and Communities Rooted in Christ
+              </h2>
+              <p className="text-muted-foreground text-xl leading-relaxed">
+                We envision a world where every community has been touched by the love of Christ, where the Gospel has reached the unreached, where the vulnerable are cared for, and where believers are equipped and empowered to serve God with their unique gifts and talents.
+              </p>
             </div>
-            <h2 className="font-display text-3xl md:text-5xl font-bold text-foreground mb-8">
-              To See Transformed Lives and Communities Rooted in Christ
-            </h2>
-            <p className="text-muted-foreground text-xl leading-relaxed">
-              We envision a world where every community has been touched by the love of Christ, where the Gospel has reached the unreached, where the vulnerable are cared for, and where believers are equipped and empowered to serve God with their unique gifts and talents.
-            </p>
-          </div>
+          </Reveal>
         </div>
       </section>
 
@@ -118,20 +125,19 @@ const Mission = () => {
                 description: "We help those who have found freedom in Christ to discover and use their gifts and talents in service to God and others.",
               },
             ].map((item, index) => (
-              <div
-                key={index}
-                className="bg-card p-8 rounded-2xl shadow-soft hover:shadow-elevated transition-all group"
-              >
-                <div className="w-14 h-14 rounded-2xl bg-gold/10 flex items-center justify-center mb-6 group-hover:bg-gold/20 transition-colors">
-                  <item.icon className="w-7 h-7 text-gold" />
+              <Reveal key={index} delay={index * 80}>
+                <div className="bg-card p-8 rounded-2xl shadow-soft hover:shadow-elevated hover:-translate-y-2 transition-all duration-300 group h-full">
+                  <div className="w-14 h-14 rounded-2xl bg-gold/10 flex items-center justify-center mb-6 group-hover:bg-gold/20 group-hover:rotate-6 group-hover:scale-110 transition-all duration-300">
+                    <item.icon className="w-7 h-7 text-gold" />
+                  </div>
+                  <h3 className="font-display text-xl font-bold text-foreground mb-3">
+                    {item.title}
+                  </h3>
+                  <p className="text-muted-foreground">
+                    {item.description}
+                  </p>
                 </div>
-                <h3 className="font-display text-xl font-bold text-foreground mb-3">
-                  {item.title}
-                </h3>
-                <p className="text-muted-foreground">
-                  {item.description}
-                </p>
-              </div>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -157,17 +163,16 @@ const Mission = () => {
               { title: "Compassion", description: "Love in action for others" },
               { title: "Faith", description: "Trusting God completely" },
             ].map((value, index) => (
-              <div
-                key={index}
-                className="bg-cream/10 backdrop-blur-sm p-6 rounded-2xl text-center"
-              >
-                <h3 className="font-display text-xl font-bold text-cream mb-2">
-                  {value.title}
-                </h3>
-                <p className="text-cream/80 text-sm">
-                  {value.description}
-                </p>
-              </div>
+              <Reveal key={index} delay={index * 70}>
+                <div className="bg-cream/10 backdrop-blur-sm p-6 rounded-2xl text-center hover:bg-cream/20 hover:-translate-y-1 hover:scale-105 transition-all duration-300 cursor-default">
+                  <h3 className="font-display text-xl font-bold text-cream mb-2">
+                    {value.title}
+                  </h3>
+                  <p className="text-cream/80 text-sm">
+                    {value.description}
+                  </p>
+                </div>
+              </Reveal>
             ))}
           </div>
         </div>
