@@ -121,34 +121,33 @@ const Partners = () => {
                 ],
               },
             ].map((partner, index) => (
-              <div
-                key={index}
-                className="bg-card p-8 rounded-2xl shadow-soft hover:shadow-elevated transition-all border-t-4 border-gold"
-              >
-                <div className="w-14 h-14 rounded-2xl bg-gold/10 flex items-center justify-center mb-6">
-                  <partner.icon className="w-7 h-7 text-gold" />
+              <Reveal key={index} delay={index * 100}>
+                <div className="bg-card p-8 rounded-2xl shadow-soft hover:shadow-elevated hover:-translate-y-2 transition-all duration-300 border-t-4 border-gold h-full flex flex-col group">
+                  <div className="w-14 h-14 rounded-2xl bg-gold/10 flex items-center justify-center mb-6 group-hover:bg-gold/20 group-hover:scale-110 transition-all duration-300">
+                    <partner.icon className="w-7 h-7 text-gold" />
+                  </div>
+                  <h3 className="font-display text-xl font-bold text-foreground mb-3">
+                    {partner.type}
+                  </h3>
+                  <p className="text-muted-foreground mb-6">
+                    {partner.description}
+                  </p>
+                  <ul className="space-y-2 mb-6 flex-1">
+                    {partner.benefits.map((benefit, i) => (
+                      <li key={i} className="flex items-center gap-2 text-sm text-foreground">
+                        <div className="w-1.5 h-1.5 rounded-full bg-gold" />
+                        {benefit}
+                      </li>
+                    ))}
+                  </ul>
+                  <Button asChild variant="outline" className="w-full">
+                    <Link to="/contact">
+                      Become a Partner
+                      <ChevronRight className="w-4 h-4" />
+                    </Link>
+                  </Button>
                 </div>
-                <h3 className="font-display text-xl font-bold text-foreground mb-3">
-                  {partner.type}
-                </h3>
-                <p className="text-muted-foreground mb-6">
-                  {partner.description}
-                </p>
-                <ul className="space-y-2 mb-6">
-                  {partner.benefits.map((benefit, i) => (
-                    <li key={i} className="flex items-center gap-2 text-sm text-foreground">
-                      <div className="w-1.5 h-1.5 rounded-full bg-gold" />
-                      {benefit}
-                    </li>
-                  ))}
-                </ul>
-                <Button asChild variant="outline" className="w-full">
-                  <Link to="/contact">
-                    Become a Partner
-                    <ChevronRight className="w-4 h-4" />
-                  </Link>
-                </Button>
-              </div>
+              </Reveal>
             ))}
           </div>
         </div>
