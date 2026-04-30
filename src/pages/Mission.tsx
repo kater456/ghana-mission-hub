@@ -15,13 +15,15 @@ const Mission = () => {
         </div>
         
         <div className="relative container mx-auto px-4 text-center">
-          <p className="text-gold font-medium mb-4">Our Purpose</p>
-          <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-cream mb-6">
-            Mission & Vision
-          </h1>
-          <p className="text-cream/80 text-lg max-w-2xl mx-auto">
-            Driven by faith, guided by purpose — discover the heart behind everything we do.
-          </p>
+          <Reveal>
+            <p className="text-gold font-medium mb-4">Our Purpose</p>
+            <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-cream mb-6">
+              Mission & Vision
+            </h1>
+            <p className="text-cream/80 text-lg max-w-2xl mx-auto">
+              Driven by faith, guided by purpose — discover the heart behind everything we do.
+            </p>
+          </Reveal>
         </div>
       </section>
 
