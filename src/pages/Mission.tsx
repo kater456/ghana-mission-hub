@@ -65,18 +65,20 @@ const Mission = () => {
       {/* Vision Statement */}
       <section className="py-20 bg-background">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="inline-flex items-center gap-3 bg-terracotta/10 px-4 py-2 rounded-full mb-6">
-              <Eye className="w-5 h-5 text-terracotta" />
-              <span className="text-terracotta font-medium">Our Vision</span>
+          <Reveal>
+            <div className="max-w-4xl mx-auto text-center">
+              <div className="inline-flex items-center gap-3 bg-terracotta/10 px-4 py-2 rounded-full mb-6">
+                <Eye className="w-5 h-5 text-terracotta" />
+                <span className="text-terracotta font-medium">Our Vision</span>
+              </div>
+              <h2 className="font-display text-3xl md:text-5xl font-bold text-foreground mb-8">
+                To See Transformed Lives and Communities Rooted in Christ
+              </h2>
+              <p className="text-muted-foreground text-xl leading-relaxed">
+                We envision a world where every community has been touched by the love of Christ, where the Gospel has reached the unreached, where the vulnerable are cared for, and where believers are equipped and empowered to serve God with their unique gifts and talents.
+              </p>
             </div>
-            <h2 className="font-display text-3xl md:text-5xl font-bold text-foreground mb-8">
-              To See Transformed Lives and Communities Rooted in Christ
-            </h2>
-            <p className="text-muted-foreground text-xl leading-relaxed">
-              We envision a world where every community has been touched by the love of Christ, where the Gospel has reached the unreached, where the vulnerable are cared for, and where believers are equipped and empowered to serve God with their unique gifts and talents.
-            </p>
-          </div>
+          </Reveal>
         </div>
       </section>
 
