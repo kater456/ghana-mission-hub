@@ -50,14 +50,18 @@ const About = () => {
                 </p>
               </div>
             </div>
-            <div className="relative">
-              <img
-                src={outreach}
-                alt="Church worship in northern Ghana"
-                className="rounded-2xl shadow-elevated"
-              />
-              <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-gradient-to-br from-gold to-terracotta rounded-2xl opacity-50" />
-            </div>
+            <Reveal delay={150}>
+              <div className="relative group">
+                <div className="overflow-hidden rounded-2xl shadow-elevated">
+                  <img
+                    src={outreach}
+                    alt="Church worship in northern Ghana"
+                    className="w-full transition-transform duration-700 group-hover:scale-105"
+                  />
+                </div>
+                <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-gradient-to-br from-gold to-terracotta rounded-2xl opacity-50 group-hover:opacity-80 transition-opacity" />
+              </div>
+            </Reveal>
           </div>
         </div>
       </section>
