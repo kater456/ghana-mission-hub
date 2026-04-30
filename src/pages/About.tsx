@@ -149,20 +149,19 @@ const About = () => {
               { icon: Handshake, title: "Compassion", description: "Moved by love to meet the needs of others" },
               { icon: Lightbulb, title: "Faith", description: "Trusting God's guidance in all circumstances" },
             ].map((value, index) => (
-              <div
-                key={index}
-                className="bg-card p-6 rounded-2xl shadow-soft text-center group hover:shadow-elevated transition-all"
-              >
-                <div className="w-14 h-14 rounded-2xl bg-gold/10 flex items-center justify-center mx-auto mb-4 group-hover:bg-gold/20 transition-colors">
-                  <value.icon className="w-7 h-7 text-gold" />
+              <Reveal key={index} delay={index * 70}>
+                <div className="bg-card p-6 rounded-2xl shadow-soft text-center group hover:shadow-elevated hover:-translate-y-2 transition-all duration-300 h-full">
+                  <div className="w-14 h-14 rounded-2xl bg-gold/10 flex items-center justify-center mx-auto mb-4 group-hover:bg-gold/20 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
+                    <value.icon className="w-7 h-7 text-gold" />
+                  </div>
+                  <h3 className="font-display text-lg font-bold text-foreground mb-2">
+                    {value.title}
+                  </h3>
+                  <p className="text-muted-foreground text-sm">
+                    {value.description}
+                  </p>
                 </div>
-                <h3 className="font-display text-lg font-bold text-foreground mb-2">
-                  {value.title}
-                </h3>
-                <p className="text-muted-foreground text-sm">
-                  {value.description}
-                </p>
-              </div>
+              </Reveal>
             ))}
           </div>
         </div>
