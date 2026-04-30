@@ -6,7 +6,7 @@ import missionaryTraining from "@/assets/missionary-training.jpg";
 import worshipService from "@/assets/worship-service.jpg";
 import schoolShoes from "@/assets/school-shoes.jpg";
 import schoolChildren from "@/assets/school-children.jpg";
-import healthcareInitiative from "@/assets/healthcare-initiative.jpg";
+import healthcareInitiative from "@/assets/north-trip-medical-delivery.jpg";
 
 const programs = [
   {

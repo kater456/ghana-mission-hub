@@ -5,7 +5,7 @@ import MissionUpdates from "@/components/MissionUpdates";
 import LatestVisit from "@/components/LatestVisit";
 import heroImage from "@/assets/community-gathering.jpg";
 import communityDevelopment from "@/assets/community-development.jpg";
-import medicalOutreach from "@/assets/medical-mission-home.jpg";
+import medicalOutreach from "@/assets/north-trip-medical-outreach-1.jpg";
 import worshipService from "@/assets/community-gathering.jpg";
 import educationProgram from "@/assets/education-support.jpg";
 
