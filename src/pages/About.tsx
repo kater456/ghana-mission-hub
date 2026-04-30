@@ -4,6 +4,7 @@ import { ChevronRight, Heart, Users, Shield, Handshake, Lightbulb, MapPin, Churc
 import outreach from "@/assets/outreach.jpg";
 import northernOutreach from "@/assets/northern-outreach.jpg";
 import schoolOutreach from "@/assets/school-outreach.jpg";
+import { Reveal } from "@/hooks/use-reveal";
 const About = () => {
   return (
     <div className="flex flex-col">
