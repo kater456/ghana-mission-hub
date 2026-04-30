@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ChevronRight, Target, Eye, BookOpen, Globe, Heart, Users } from "lucide-react";
 import heroImage from "@/assets/hero-image.jpg";
+import { Reveal } from "@/hooks/use-reveal";
 
 const Mission = () => {
   return (
