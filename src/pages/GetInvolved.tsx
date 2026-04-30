@@ -1,7 +1,9 @@
 import { Link } from "react-router-dom";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { ChevronRight, Heart, Users, Plane, PenTool, Megaphone, HandHeart } from "lucide-react";
+import { ChevronRight, ChevronDown, Heart, Users, Plane, PenTool, Megaphone, HandHeart } from "lucide-react";
 import communityOutreach from "@/assets/community-outreach.jpg";
+import { Reveal } from "@/hooks/use-reveal";
 
 const GetInvolved = () => {
   return (
