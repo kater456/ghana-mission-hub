@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ChevronRight, Church, Building, Users, Heart, Globe, Handshake } from "lucide-react";
+import { Reveal, useReveal } from "@/hooks/use-reveal";
 
 const Partners = () => {
   return (
