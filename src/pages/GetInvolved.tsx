@@ -186,19 +186,39 @@ const GetInvolved = () => {
                 question: "Can I support a specific program?",
                 answer: "Yes! You can designate your donation to a specific program such as education, medical missions, or church planting. Contact us to learn more about targeted giving.",
               },
-            ].map((faq, index) => (
-              <div
-                key={index}
-                className="bg-card p-6 rounded-2xl shadow-soft"
-              >
-                <h3 className="font-display text-lg font-bold text-foreground mb-3">
-                  {faq.question}
-                </h3>
-                <p className="text-muted-foreground">
-                  {faq.answer}
-                </p>
-              </div>
-            ))}
+            ].map((faq, index) => {
+              const isOpen = openFaq === index;
+              return (
+                <Reveal key={index} delay={index * 60}>
+                  <div className="bg-card rounded-2xl shadow-soft hover:shadow-elevated transition-shadow overflow-hidden">
+                    <button
+                      type="button"
+                      onClick={() => setOpenFaq(isOpen ? null : index)}
+                      aria-expanded={isOpen}
+                      className="w-full flex items-center justify-between gap-4 p-6 text-left"
+                    >
+                      <h3 className="font-display text-lg font-bold text-foreground">
+                        {faq.question}
+                      </h3>
+                      <ChevronDown
+                        className={`w-5 h-5 text-gold flex-shrink-0 transition-transform duration-300 ${
+                          isOpen ? "rotate-180" : ""
+                        }`}
+                      />
+                    </button>
+                    <div
+                      className={`grid transition-all duration-500 ease-out ${
+                        isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+                      }`}
+                    >
+                      <p className="overflow-hidden text-muted-foreground px-6 pb-6">
+                        {faq.answer}
+                      </p>
+                    </div>
+                  </div>
+                </Reveal>
+              );
+            })}
           </div>
 
           <div className="text-center mt-12">
