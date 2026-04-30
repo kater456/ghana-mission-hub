@@ -30,7 +30,7 @@ const About = () => {
       <section className="py-20 bg-cream">
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
+            <Reveal>
               <p className="text-gold font-medium mb-3">Our Journey</p>
               <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-6">
                 Founded on Faith, Driven by Love
@@ -49,7 +49,7 @@ const About = () => {
                   Today, we continue to build on this foundation, partnering with churches, donors, and volunteers worldwide to expand our reach to unreached people groups and deepen our impact.
                 </p>
               </div>
-            </div>
+            </Reveal>
             <Reveal delay={150}>
               <div className="relative group">
                 <div className="overflow-hidden rounded-2xl shadow-elevated">
