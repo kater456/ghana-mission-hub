@@ -163,17 +163,16 @@ const Mission = () => {
               { title: "Compassion", description: "Love in action for others" },
               { title: "Faith", description: "Trusting God completely" },
             ].map((value, index) => (
-              <div
-                key={index}
-                className="bg-cream/10 backdrop-blur-sm p-6 rounded-2xl text-center"
-              >
-                <h3 className="font-display text-xl font-bold text-cream mb-2">
-                  {value.title}
-                </h3>
-                <p className="text-cream/80 text-sm">
-                  {value.description}
-                </p>
-              </div>
+              <Reveal key={index} delay={index * 70}>
+                <div className="bg-cream/10 backdrop-blur-sm p-6 rounded-2xl text-center hover:bg-cream/20 hover:-translate-y-1 hover:scale-105 transition-all duration-300 cursor-default">
+                  <h3 className="font-display text-xl font-bold text-cream mb-2">
+                    {value.title}
+                  </h3>
+                  <p className="text-cream/80 text-sm">
+                    {value.description}
+                  </p>
+                </div>
+              </Reveal>
             ))}
           </div>
         </div>
