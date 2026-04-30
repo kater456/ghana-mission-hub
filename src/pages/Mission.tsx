@@ -31,7 +31,7 @@ const Mission = () => {
       <section className="py-20 bg-cream">
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
+            <Reveal>
               <div className="inline-flex items-center gap-3 bg-gold/10 px-4 py-2 rounded-full mb-6">
                 <Target className="w-5 h-5 text-gold" />
                 <span className="text-gold font-medium">Our Mission</span>
@@ -48,14 +48,16 @@ const Mission = () => {
                 </p>
                 <cite className="text-gold font-medium mt-2 block not-italic">— 1 Corinthians 9:19</cite>
               </blockquote>
-            </div>
-            <div className="relative">
-              <img
-                src={heroImage}
-                alt="Mission work"
-                className="rounded-2xl shadow-elevated"
-              />
-            </div>
+            </Reveal>
+            <Reveal delay={150}>
+              <div className="relative group overflow-hidden rounded-2xl shadow-elevated">
+                <img
+                  src={heroImage}
+                  alt="Mission work"
+                  className="w-full transition-transform duration-700 group-hover:scale-105"
+                />
+              </div>
+            </Reveal>
           </div>
         </div>
       </section>
