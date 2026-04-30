@@ -99,60 +99,34 @@ const About = () => {
           </div>
 
           <div className="grid md:grid-cols-2 gap-8">
-            <div className="bg-card p-8 rounded-2xl shadow-soft">
-              <h3 className="font-display text-xl font-bold text-foreground mb-4">
-                What We Believe
-              </h3>
-              <ul className="space-y-3 text-muted-foreground">
-                <li className="flex items-start gap-3">
-                  <div className="w-2 h-2 rounded-full bg-gold mt-2" />
-                  <span>The Bible as the inspired, infallible Word of God</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <div className="w-2 h-2 rounded-full bg-gold mt-2" />
-                  <span>Salvation through faith in Jesus Christ alone</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <div className="w-2 h-2 rounded-full bg-gold mt-2" />
-                  <span>The Great Commission to make disciples of all nations</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <div className="w-2 h-2 rounded-full bg-gold mt-2" />
-                  <span>The power of the Holy Spirit to transform lives</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <div className="w-2 h-2 rounded-full bg-gold mt-2" />
-                  <span>The call to serve the poor and marginalized</span>
-                </li>
-              </ul>
-            </div>
-            <div className="bg-card p-8 rounded-2xl shadow-soft">
-              <h3 className="font-display text-xl font-bold text-foreground mb-4">
-                Our Approach
-              </h3>
-              <ul className="space-y-3 text-muted-foreground">
-                <li className="flex items-start gap-3">
-                  <div className="w-2 h-2 rounded-full bg-terracotta mt-2" />
-                  <span>Wholistic ministry addressing spiritual and physical needs</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <div className="w-2 h-2 rounded-full bg-terracotta mt-2" />
-                  <span>Partnership with local churches and communities</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <div className="w-2 h-2 rounded-full bg-terracotta mt-2" />
-                  <span>Training and equipping local leaders</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <div className="w-2 h-2 rounded-full bg-terracotta mt-2" />
-                  <span>Sustainable, community-driven development</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <div className="w-2 h-2 rounded-full bg-terracotta mt-2" />
-                  <span>Accountability and transparency in all operations</span>
-                </li>
-              </ul>
-            </div>
+            <Reveal>
+              <div className="bg-card p-8 rounded-2xl shadow-soft hover:shadow-elevated hover:-translate-y-1 transition-all duration-300 h-full">
+                <h3 className="font-display text-xl font-bold text-foreground mb-4">
+                  What We Believe
+                </h3>
+                <ul className="space-y-3 text-muted-foreground">
+                  <li className="flex items-start gap-3"><div className="w-2 h-2 rounded-full bg-gold mt-2" /><span>The Bible as the inspired, infallible Word of God</span></li>
+                  <li className="flex items-start gap-3"><div className="w-2 h-2 rounded-full bg-gold mt-2" /><span>Salvation through faith in Jesus Christ alone</span></li>
+                  <li className="flex items-start gap-3"><div className="w-2 h-2 rounded-full bg-gold mt-2" /><span>The Great Commission to make disciples of all nations</span></li>
+                  <li className="flex items-start gap-3"><div className="w-2 h-2 rounded-full bg-gold mt-2" /><span>The power of the Holy Spirit to transform lives</span></li>
+                  <li className="flex items-start gap-3"><div className="w-2 h-2 rounded-full bg-gold mt-2" /><span>The call to serve the poor and marginalized</span></li>
+                </ul>
+              </div>
+            </Reveal>
+            <Reveal delay={120}>
+              <div className="bg-card p-8 rounded-2xl shadow-soft hover:shadow-elevated hover:-translate-y-1 transition-all duration-300 h-full">
+                <h3 className="font-display text-xl font-bold text-foreground mb-4">
+                  Our Approach
+                </h3>
+                <ul className="space-y-3 text-muted-foreground">
+                  <li className="flex items-start gap-3"><div className="w-2 h-2 rounded-full bg-terracotta mt-2" /><span>Wholistic ministry addressing spiritual and physical needs</span></li>
+                  <li className="flex items-start gap-3"><div className="w-2 h-2 rounded-full bg-terracotta mt-2" /><span>Partnership with local churches and communities</span></li>
+                  <li className="flex items-start gap-3"><div className="w-2 h-2 rounded-full bg-terracotta mt-2" /><span>Training and equipping local leaders</span></li>
+                  <li className="flex items-start gap-3"><div className="w-2 h-2 rounded-full bg-terracotta mt-2" /><span>Sustainable, community-driven development</span></li>
+                  <li className="flex items-start gap-3"><div className="w-2 h-2 rounded-full bg-terracotta mt-2" /><span>Accountability and transparency in all operations</span></li>
+                </ul>
+              </div>
+            </Reveal>
           </div>
         </div>
       </section>
