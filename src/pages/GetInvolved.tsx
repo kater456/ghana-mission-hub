@@ -6,6 +6,7 @@ import communityOutreach from "@/assets/community-outreach.jpg";
 import { Reveal } from "@/hooks/use-reveal";
 
 const GetInvolved = () => {
+  const [openFaq, setOpenFaq] = useState<number | null>(0);
   return (
     <div className="flex flex-col">
       {/* Hero Section */}
