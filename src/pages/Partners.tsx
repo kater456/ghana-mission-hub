@@ -55,20 +55,19 @@ const Partners = () => {
                 description: "We focus on long-term transformation, training local leaders who continue the work for generations.",
               },
             ].map((item, index) => (
-              <div
-                key={index}
-                className="bg-card p-8 rounded-2xl shadow-soft text-center group hover:shadow-elevated transition-all"
-              >
-                <div className="w-16 h-16 rounded-2xl bg-gold/10 flex items-center justify-center mx-auto mb-6 group-hover:bg-gold/20 transition-colors">
-                  <item.icon className="w-8 h-8 text-gold" />
+              <Reveal key={index} delay={index * 100}>
+                <div className="bg-card p-8 rounded-2xl shadow-soft text-center group hover:shadow-elevated hover:-translate-y-2 transition-all duration-300 h-full">
+                  <div className="w-16 h-16 rounded-2xl bg-gold/10 flex items-center justify-center mx-auto mb-6 group-hover:bg-gold/20 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
+                    <item.icon className="w-8 h-8 text-gold" />
+                  </div>
+                  <h3 className="font-display text-xl font-bold text-foreground mb-3">
+                    {item.title}
+                  </h3>
+                  <p className="text-muted-foreground">
+                    {item.description}
+                  </p>
                 </div>
-                <h3 className="font-display text-xl font-bold text-foreground mb-3">
-                  {item.title}
-                </h3>
-                <p className="text-muted-foreground">
-                  {item.description}
-                </p>
-              </div>
+              </Reveal>
             ))}
           </div>
         </div>
