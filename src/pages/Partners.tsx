@@ -215,26 +215,7 @@ const Partners = () => {
               <h3 className="font-display text-xl font-bold text-foreground mb-6 text-center">
                 Your Donation at Work
               </h3>
-              <div className="space-y-4">
-                {[
-                  { label: "Programs & Ministry", percent: 75 },
-                  { label: "Administration", percent: 15 },
-                  { label: "Fundraising", percent: 10 },
-                ].map((item, index) => (
-                  <div key={index}>
-                    <div className="flex justify-between mb-2">
-                      <span className="text-foreground font-medium">{item.label}</span>
-                      <span className="text-gold font-bold">{item.percent}%</span>
-                    </div>
-                    <div className="h-3 bg-muted rounded-full overflow-hidden">
-                      <div
-                        className="h-full bg-gradient-to-r from-gold to-terracotta rounded-full"
-                        style={{ width: `${item.percent}%` }}
-                      />
-                    </div>
-                  </div>
-                ))}
-              </div>
+              <DonationChart />
             </div>
           </div>
         </div>
