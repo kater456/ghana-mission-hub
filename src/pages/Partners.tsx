@@ -3,6 +3,36 @@ import { Button } from "@/components/ui/button";
 import { ChevronRight, Church, Building, Users, Heart, Globe, Handshake } from "lucide-react";
 import { Reveal, useReveal } from "@/hooks/use-reveal";
 
+const DonationChart = () => {
+  const { ref, visible } = useReveal<HTMLDivElement>();
+  const items = [
+    { label: "Programs & Ministry", percent: 75 },
+    { label: "Administration", percent: 15 },
+    { label: "Fundraising", percent: 10 },
+  ];
+  return (
+    <div ref={ref} className="space-y-4">
+      {items.map((item, index) => (
+        <div key={index}>
+          <div className="flex justify-between mb-2">
+            <span className="text-foreground font-medium">{item.label}</span>
+            <span className="text-gold font-bold">{item.percent}%</span>
+          </div>
+          <div className="h-3 bg-muted rounded-full overflow-hidden">
+            <div
+              className="h-full bg-gradient-to-r from-gold to-terracotta rounded-full transition-all duration-1000 ease-out"
+              style={{
+                width: visible ? `${item.percent}%` : "0%",
+                transitionDelay: `${index * 150}ms`,
+              }}
+            />
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+};
+
 const Partners = () => {
   return (
     <div className="flex flex-col">
