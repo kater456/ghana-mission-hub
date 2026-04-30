@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { ChevronRight, Church, Stethoscope, GraduationCap, HandHeart, Users } from "lucide-react";
+import { ChevronRight, ChevronDown, Church, Stethoscope, GraduationCap, HandHeart, Users } from "lucide-react";
+import { Reveal } from "@/hooks/use-reveal";
 import communityOutreach from "@/assets/community-outreach.jpg";
 import missionaryTraining from "@/assets/missionary-training.jpg";
 import worshipService from "@/assets/worship-service.jpg";
