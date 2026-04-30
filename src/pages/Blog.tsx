@@ -10,7 +10,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import communityOutreach from "@/assets/community-outreach.jpg";
-import medicalOutreach from "@/assets/medical-outreach.jpg";
+import medicalOutreach from "@/assets/north-trip-medical-outreach-1.jpg";
 import worshipService from "@/assets/worship-service.jpg";
 import educationProgram from "@/assets/education-program.jpg";
 import lawackMissionHouse from "@/assets/lawack-mission-house.jpeg";
