@@ -82,26 +82,25 @@ const GetInvolved = () => {
                 link: "/contact",
               },
             ].map((item, index) => (
-              <div
-                key={index}
-                className="bg-card p-8 rounded-2xl shadow-soft hover:shadow-elevated transition-all group"
-              >
-                <div className="w-14 h-14 rounded-2xl bg-gold/10 flex items-center justify-center mb-6 group-hover:bg-gold/20 transition-colors">
-                  <item.icon className="w-7 h-7 text-gold" />
+              <Reveal key={index} delay={index * 80}>
+                <div className="bg-card p-8 rounded-2xl shadow-soft hover:shadow-elevated hover:-translate-y-2 transition-all duration-300 group h-full flex flex-col">
+                  <div className="w-14 h-14 rounded-2xl bg-gold/10 flex items-center justify-center mb-6 group-hover:bg-gold/20 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
+                    <item.icon className="w-7 h-7 text-gold" />
+                  </div>
+                  <h3 className="font-display text-xl font-bold text-foreground mb-3">
+                    {item.title}
+                  </h3>
+                  <p className="text-muted-foreground mb-6 flex-1">
+                    {item.description}
+                  </p>
+                  <Button asChild variant="outline" className="w-fit group/btn">
+                    <Link to={item.link}>
+                      {item.action}
+                      <ChevronRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+                    </Link>
+                  </Button>
                 </div>
-                <h3 className="font-display text-xl font-bold text-foreground mb-3">
-                  {item.title}
-                </h3>
-                <p className="text-muted-foreground mb-6">
-                  {item.description}
-                </p>
-                <Button asChild variant="outline">
-                  <Link to={item.link}>
-                    {item.action}
-                    <ChevronRight className="w-4 h-4" />
-                  </Link>
-                </Button>
-              </div>
+              </Reveal>
             ))}
           </div>
         </div>
