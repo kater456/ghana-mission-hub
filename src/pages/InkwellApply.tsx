@@ -13,7 +13,7 @@ import {
 import {
   Accordion, AccordionContent, AccordionItem, AccordionTrigger,
 } from "@/components/ui/accordion";
-import { Feather, Mail, Globe2, Loader2, ArrowRight } from "lucide-react";
+import { Feather, Mail, Loader2, ArrowRight } from "lucide-react";
 
 const FORMSPREE = "https://formspree.io/f/mjgdoroz";
 
