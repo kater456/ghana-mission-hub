@@ -5,7 +5,35 @@ import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Reveal } from "@/hooks/use-reveal";
-import { BookOpen, Pencil, Globe2, Drama, Flame, Clock, ArrowRight } from "lucide-react";
+import { BookOpen, Pencil, Globe2, Drama, Flame, Clock, ArrowRight, Feather } from "lucide-react";
+import { client, urlFor } from "@/lib/sanityClient";
+
+const ARTICLES_QUERY = `*[_type == "article"] |
+order(publishedAt desc) {
+  _id,
+  title,
+  slug,
+  pillar,
+  excerpt,
+  coverImage,
+  author,
+  authorPhoto,
+  readTime,
+  publishedAt
+}`;
+
+interface Article {
+  _id: string;
+  title: string;
+  slug: { current: string };
+  pillar: string;
+  excerpt: string;
+  coverImage: any;
+  author: string;
+  authorPhoto: any;
+  readTime: number;
+  publishedAt: string;
+}
 
 const pillars = [
   { id: "word", emoji: "📖", icon: BookOpen, title: "The Word, Unpacked", desc: "Bible reflections and devotionals made relatable." },
@@ -15,31 +43,7 @@ const pillars = [
   { id: "sent", emoji: "🔥", icon: Flame, title: "The Sent Ones", desc: "Mission, evangelism, and reaching unreached communities." },
 ];
 
-const img = (id: string) => `https://images.unsplash.com/${id}?auto=format&fit=crop&w=1200&q=70`;
 const av = (id: string) => `https://images.unsplash.com/${id}?auto=format&fit=crop&w=200&q=70`;
-
-const articles = [
-  // word
-  { pillar: "word", title: "Grace Is Not a Hall Pass", excerpt: "Rediscovering Romans 6 in a culture that confuses freedom with license.", author: "Ama Boateng", avatar: "photo-1531123897727-8f129e1688ce", image: "photo-1499209974431-9dddcece7f88", read: 6 },
-  { pillar: "word", title: "The God Who Sees in the Wilderness", excerpt: "What Hagar's story still tells women who feel invisible today.", author: "Naa Adjeley", avatar: "photo-1544005313-94ddf0286df2", image: "photo-1476231682828-37e571bc172f", read: 5 },
-  { pillar: "word", title: "Reading Psalms Out Loud Again", excerpt: "Why ancient prayers still beat into the rhythm of our anxiety.", author: "Kwesi Mensah", avatar: "photo-1500648767791-00dcc994a43e", image: "photo-1455390582262-044cdead277a", read: 7 },
-  // story
-  { pillar: "story", title: "I Was the Loudest Atheist in My Class", excerpt: "Then a quiet Sunday in Kumasi rewrote my whole story.", author: "Selorm Akoto", avatar: "photo-1521119989659-a83eee488004", image: "photo-1521791136064-7986c2920216", read: 8 },
-  { pillar: "story", title: "Coming Home After Five Years of Wandering", excerpt: "What the prodigal didn't tell you about the journey back.", author: "Adwoa Frimpong", avatar: "photo-1438761681033-6461ffad8d80", image: "photo-1518709268805-4e9042af2176", read: 6 },
-  { pillar: "story", title: "My Anxiety, My Bible, My Mornings", excerpt: "A small testimony about a small habit that saved me.", author: "Jojo Ankrah", avatar: "photo-1492562080023-ab3db95bfbce", image: "photo-1506905925346-21bda4d32df4", read: 4 },
-  // life
-  { pillar: "life", title: "Should Christians Be on TikTok?", excerpt: "A conversation about platforms, presence, and prophetic witness.", author: "Esi Donkor", avatar: "photo-1487412720507-e7ab37603c6f", image: "photo-1611162617213-7d7a39e9b1d7", read: 7 },
-  { pillar: "life", title: "The Gospel in a Hustle Culture", excerpt: "What does 'rest' really mean when rent is due in Accra?", author: "Kobby Sarpong", avatar: "photo-1506794778202-cad84cf45f1d", image: "photo-1521737604893-d14cc237f11d", read: 9 },
-  { pillar: "life", title: "Justice Is a Spiritual Discipline", excerpt: "Micah 6:8 was never meant to be just a wall sticker.", author: "Akua Mansa", avatar: "photo-1502323777036-f29e3972d82f", image: "photo-1469571486292-0ba58a3f068b", read: 6 },
-  // creative
-  { pillar: "creative", title: "Psalm for a Tired Tuesday", excerpt: "A spoken-word piece for everyone halfway through the week.", author: "Yaa Asantewaa", avatar: "photo-1524504388940-b1c1722653e1", image: "photo-1455390582262-044cdead277a", read: 3 },
-  { pillar: "creative", title: "Letters to Lazarus", excerpt: "A short story imagining the morning after the miracle.", author: "Nii Okai", avatar: "photo-1500648767791-00dcc994a43e", image: "photo-1457369804613-52c61a468e7d", read: 11 },
-  { pillar: "creative", title: "Ink & Incense", excerpt: "Three poems on prayer, silence, and the long road home.", author: "Maa Efua", avatar: "photo-1544005313-94ddf0286df2", image: "photo-1519682337058-a94d519337bc", read: 4 },
-  // sent
-  { pillar: "sent", title: "The North Is Closer Than You Think", excerpt: "Notes from our latest medical and discipleship outreach.", author: "Pastor Daniel", avatar: "photo-1507003211169-0a1dd7228f2d", image: "photo-1469571486292-0ba58a3f068b", read: 6 },
-  { pillar: "sent", title: "Unreached Doesn't Mean Unreachable", excerpt: "A frame for thinking about the people groups still waiting.", author: "Linda Owusu", avatar: "photo-1438761681033-6461ffad8d80", image: "photo-1500382017468-9049fed747ef", read: 8 },
-  { pillar: "sent", title: "What the Children Taught Us in Tamale", excerpt: "Sometimes the missionaries are the ones being discipled.", author: "Mawuli Tetteh", avatar: "photo-1492562080023-ab3db95bfbce", image: "photo-1503454537195-1dcabb73ffb9", read: 5 },
-];
 
 const contributors = [
   { name: "Ama Boateng", pillar: "The Word, Unpacked", bio: "Theology student writing devotionals for restless souls.", avatar: "photo-1531123897727-8f129e1688ce" },
@@ -68,6 +72,7 @@ function TiltCard({ children, className = "" }: { children: React.ReactNode; cla
 }
 
 const Inkwell = () => {
+  const [articles, setArticles] = useState<Article[]>([]);
   const [activePillar, setActivePillar] = useState<string>("all");
   const [loading, setLoading] = useState(true);
   const [scrollY, setScrollY] = useState(0);
@@ -75,10 +80,23 @@ const Inkwell = () => {
 
   useEffect(() => {
     document.title = "The Inkwell — Mission House Ghana";
-    const t = setTimeout(() => setLoading(false), 700);
+
+    const fetchArticles = async () => {
+      try {
+        const data = await client.fetch(ARTICLES_QUERY);
+        setArticles(data);
+      } catch (error) {
+        console.error("Error fetching articles:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchArticles();
+
     const onScroll = () => setScrollY(window.scrollY);
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => { clearTimeout(t); window.removeEventListener("scroll", onScroll); };
+    return () => { window.removeEventListener("scroll", onScroll); };
   }, []);
 
   const filtered = activePillar === "all" ? articles : articles.filter(a => a.pillar === activePillar);
@@ -232,23 +250,33 @@ const Inkwell = () => {
                 {Array.from({ length: 6 }).map((_, i) => <Skeleton key={i} className="h-96 rounded-xl" />)}
               </div>
             </div>
+          ) : filtered.length === 0 ? (
+            <div className="text-center py-20">
+              <div className="flex justify-center mb-6">
+                <div className="p-4 rounded-full bg-cream shadow-soft">
+                  <Feather className="w-12 h-12 text-[#C9A84C]" />
+                </div>
+              </div>
+              <h3 className="font-display text-3xl font-bold text-forest mb-3">The Inkwell is just getting started.</h3>
+              <p className="text-muted-foreground text-lg">Check back soon — great writing is on its way.</p>
+            </div>
           ) : (
             <>
               {featured && (
                 <Reveal>
                   <Card className="rounded-xl overflow-hidden grid md:grid-cols-2 mb-10 hover:-translate-y-1 hover:shadow-elevated transition-all duration-300">
                     <div className="relative h-72 md:h-auto overflow-hidden">
-                      <img src={img(featured.image)} alt={featured.title} className="w-full h-full object-cover transition-transform duration-700 hover:scale-105" />
+                      <img src={urlFor(featured.coverImage).width(800).url()} alt={featured.title} className="w-full h-full object-cover transition-transform duration-700 hover:scale-105" />
                       <Badge className="absolute top-4 left-4 bg-[#C9A84C] text-earth hover:bg-[#C9A84C]">Featured · {pillarLabel(featured.pillar)}</Badge>
                     </div>
                     <div className="p-8 md:p-10 flex flex-col justify-center">
                       <h3 className="font-display text-3xl md:text-4xl font-bold text-forest mb-4">{featured.title}</h3>
                       <p className="text-muted-foreground mb-6">{featured.excerpt}</p>
                       <div className="flex items-center gap-3 mb-6">
-                        <img src={av(featured.avatar)} alt={featured.author} className="w-12 h-12 rounded-full object-cover" />
+                        <img src={urlFor(featured.authorPhoto).width(100).url()} alt={featured.author} className="w-12 h-12 rounded-full object-cover" />
                         <div>
                           <p className="font-semibold text-foreground">{featured.author}</p>
-                          <p className="text-xs text-muted-foreground flex items-center gap-1"><Clock className="w-3 h-3" /> {featured.read} min read</p>
+                          <p className="text-xs text-muted-foreground flex items-center gap-1"><Clock className="w-3 h-3" /> {featured.readTime} min read</p>
                         </div>
                       </div>
                       <Button variant="forest" className="rounded-full self-start">Read More <ArrowRight className="w-4 h-4" /></Button>
@@ -262,17 +290,17 @@ const Inkwell = () => {
                   <Reveal key={`${a.pillar}-${i}`} delay={(i % 3) * 100}>
                     <Card className="rounded-xl overflow-hidden h-full flex flex-col hover:-translate-y-2 hover:shadow-elevated transition-all duration-300 group">
                       <div className="relative h-48 overflow-hidden">
-                        <img src={img(a.image)} alt={a.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                        <img src={urlFor(a.coverImage).width(800).url()} alt={a.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
                         <Badge className="absolute top-3 left-3 bg-forest text-cream hover:bg-forest">{pillarLabel(a.pillar)}</Badge>
                       </div>
                       <div className="p-6 flex flex-col flex-1">
                         <h3 className="font-display text-xl font-bold text-forest mb-2 line-clamp-2">{a.title}</h3>
                         <p className="text-sm text-muted-foreground mb-4 line-clamp-3 flex-1">{a.excerpt}</p>
                         <div className="flex items-center gap-3 mb-4">
-                          <img src={av(a.avatar)} alt={a.author} className="w-10 h-10 rounded-full object-cover" />
+                          <img src={urlFor(a.authorPhoto).width(100).url()} alt={a.author} className="w-10 h-10 rounded-full object-cover" />
                           <div className="flex-1 min-w-0">
                             <p className="text-sm font-semibold truncate">{a.author}</p>
-                            <p className="text-xs text-muted-foreground flex items-center gap-1"><Clock className="w-3 h-3" />{a.read} min</p>
+                            <p className="text-xs text-muted-foreground flex items-center gap-1"><Clock className="w-3 h-3" />{a.readTime} min</p>
                           </div>
                         </div>
                         <Button variant="outline" size="sm" className="rounded-full self-start">Read More</Button>
