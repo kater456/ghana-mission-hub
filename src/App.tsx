@@ -35,6 +35,8 @@ const App = () => (
             <Route path="/get-involved" element={<GetInvolved />} />
             <Route path="/donate" element={<Donate />} />
             <Route path="/blog" element={<Blog />} />
+            <Route path="/inkwell" element={<Inkwell />} />
+            <Route path="/inkwell/apply" element={<InkwellApply />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
