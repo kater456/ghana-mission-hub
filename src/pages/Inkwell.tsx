@@ -20,7 +20,20 @@ order(publishedAt desc) {
   authorPhoto,
   readTime,
   publishedAt
-}`
+}`;
+
+interface Article {
+  _id: string;
+  title: string;
+  slug: { current: string };
+  pillar: string;
+  excerpt: string;
+  coverImage: any;
+  author: string;
+  authorPhoto: any;
+  readTime: number;
+  publishedAt: string;
+}
 
 const pillars = [
   { id: "word", emoji: "📖", icon: BookOpen, title: "The Word, Unpacked", desc: "Bible reflections and devotionals made relatable." },
@@ -30,7 +43,6 @@ const pillars = [
   { id: "sent", emoji: "🔥", icon: Flame, title: "The Sent Ones", desc: "Mission, evangelism, and reaching unreached communities." },
 ];
 
-const img = (id: string) => `https://images.unsplash.com/${id}?auto=format&fit=crop&w=1200&q=70`;
 const av = (id: string) => `https://images.unsplash.com/${id}?auto=format&fit=crop&w=200&q=70`;
 
 const contributors = [
@@ -60,6 +72,7 @@ function TiltCard({ children, className = "" }: { children: React.ReactNode; cla
 }
 
 const Inkwell = () => {
+  const [articles, setArticles] = useState<Article[]>([]);
   const [activePillar, setActivePillar] = useState<string>("all");
   const [sanityArticles, setSanityArticles] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
@@ -72,7 +85,7 @@ const Inkwell = () => {
     const fetchArticles = async () => {
       try {
         const data = await client.fetch(ARTICLES_QUERY);
-        setSanityArticles(data);
+setSanityArticles(data);
       } catch (error) {
         console.error("Error fetching articles:", error);
       } finally {
@@ -239,7 +252,7 @@ const Inkwell = () => {
               </div>
             </div>
           ) : filtered.length === 0 ? (
-            <div className="py-20 text-center">
+<div className="py-20 text-center">
               <Reveal>
                 <div className="flex flex-col items-center justify-center">
                   <Feather className="w-16 h-16 text-[#C9A84C] mb-6 animate-bounce" />
@@ -359,6 +372,20 @@ const Inkwell = () => {
               className="inline-flex items-center gap-2 rounded-full bg-[#C9A84C] text-earth font-semibold px-10 py-4 shadow-elevated hover:scale-105 transition-transform"
             >
               Apply to Write <ArrowRight className="w-4 h-4" />
+            </Link>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* DISCREET SUBMIT LINK */}
+      <section className="py-8 bg-[#FAF7F2]">
+        <div className="container mx-auto px-4 text-center">
+          <Reveal>
+            <Link
+              to="/submit"
+              className="text-xs md:text-sm text-muted-foreground hover:text-[#C9A84C] transition-colors font-sans"
+            >
+              Approved writer? Submit your next piece →
             </Link>
           </Reveal>
         </div>
