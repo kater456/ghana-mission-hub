@@ -371,6 +371,20 @@ const Inkwell = () => {
           </Reveal>
         </div>
       </section>
+
+      {/* DISCREET SUBMIT LINK */}
+      <section className="py-8 bg-[#FAF7F2]">
+        <div className="container mx-auto px-4 text-center">
+          <Reveal>
+            <Link
+              to="/submit"
+              className="text-xs md:text-sm text-muted-foreground hover:text-[#C9A84C] transition-colors font-sans"
+            >
+              Approved writer? Submit your next piece →
+            </Link>
+          </Reveal>
+        </div>
+      </section>
     </div>
   );
 };
