@@ -13,6 +13,8 @@ import GetInvolved from "./pages/GetInvolved";
 import Donate from "./pages/Donate";
 import Blog from "./pages/Blog";
 import Contact from "./pages/Contact";
+import Inkwell from "./pages/Inkwell";
+import InkwellApply from "./pages/InkwellApply";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -33,6 +35,8 @@ const App = () => (
             <Route path="/get-involved" element={<GetInvolved />} />
             <Route path="/donate" element={<Donate />} />
             <Route path="/blog" element={<Blog />} />
+            <Route path="/inkwell" element={<Inkwell />} />
+            <Route path="/inkwell/apply" element={<InkwellApply />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="*" element={<NotFound />} />
           </Routes>

@@ -12,6 +12,7 @@ const navLinks = [
   { name: "Partners", path: "/partners" },
   { name: "Get Involved", path: "/get-involved" },
   { name: "Blog", path: "/blog" },
+  { name: "The Inkwell", path: "/inkwell" },
   { name: "Contact", path: "/contact" },
 ];
 
