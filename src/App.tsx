@@ -13,6 +13,8 @@ import GetInvolved from "./pages/GetInvolved";
 import Donate from "./pages/Donate";
 import Blog from "./pages/Blog";
 import Contact from "./pages/Contact";
+import Inkwell from "./pages/Inkwell";
+import InkwellApply from "./pages/InkwellApply";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
