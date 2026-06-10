@@ -3,6 +3,8 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Studio } from "sanity";
+import config from "../sanity.config";
 import Layout from "./components/layout/Layout";
 import Index from "./pages/Index";
 import About from "./pages/About";
@@ -25,22 +27,30 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
-        <Layout>
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/mission" element={<Mission />} />
-            <Route path="/programs" element={<Programs />} />
-            <Route path="/partners" element={<Partners />} />
-            <Route path="/get-involved" element={<GetInvolved />} />
-            <Route path="/donate" element={<Donate />} />
-            <Route path="/blog" element={<Blog />} />
-            <Route path="/inkwell" element={<Inkwell />} />
-            <Route path="/inkwell/apply" element={<InkwellApply />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </Layout>
+        <Routes>
+          <Route path="/studio/*" element={<Studio config={config} />} />
+          <Route
+            path="*"
+            element={
+              <Layout>
+                <Routes>
+                  <Route path="/" element={<Index />} />
+                  <Route path="/about" element={<About />} />
+                  <Route path="/mission" element={<Mission />} />
+                  <Route path="/programs" element={<Programs />} />
+                  <Route path="/partners" element={<Partners />} />
+                  <Route path="/get-involved" element={<GetInvolved />} />
+                  <Route path="/donate" element={<Donate />} />
+                  <Route path="/blog" element={<Blog />} />
+                  <Route path="/inkwell" element={<Inkwell />} />
+                  <Route path="/inkwell/apply" element={<InkwellApply />} />
+                  <Route path="/contact" element={<Contact />} />
+                  <Route path="*" element={<NotFound />} />
+                </Routes>
+              </Layout>
+            }
+          />
+        </Routes>
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
