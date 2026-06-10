@@ -74,6 +74,7 @@ function TiltCard({ children, className = "" }: { children: React.ReactNode; cla
 const Inkwell = () => {
   const [articles, setArticles] = useState<Article[]>([]);
   const [activePillar, setActivePillar] = useState<string>("all");
+  const [sanityArticles, setSanityArticles] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [scrollY, setScrollY] = useState(0);
   const feedRef = useRef<HTMLDivElement>(null);
@@ -84,7 +85,7 @@ const Inkwell = () => {
     const fetchArticles = async () => {
       try {
         const data = await client.fetch(ARTICLES_QUERY);
-        setArticles(data);
+setSanityArticles(data);
       } catch (error) {
         console.error("Error fetching articles:", error);
       } finally {
@@ -99,7 +100,7 @@ const Inkwell = () => {
     return () => { window.removeEventListener("scroll", onScroll); };
   }, []);
 
-  const filtered = activePillar === "all" ? articles : articles.filter(a => a.pillar === activePillar);
+  const filtered = activePillar === "all" ? sanityArticles : sanityArticles.filter(a => a.pillar === activePillar);
   const [featured, ...rest] = filtered;
   const pillarLabel = (id: string) => pillars.find(p => p.id === id)?.title ?? "";
 
@@ -251,14 +252,18 @@ const Inkwell = () => {
               </div>
             </div>
           ) : filtered.length === 0 ? (
-            <div className="text-center py-20">
-              <div className="flex justify-center mb-6">
-                <div className="p-4 rounded-full bg-cream shadow-soft">
-                  <Feather className="w-12 h-12 text-[#C9A84C]" />
+<div className="py-20 text-center">
+              <Reveal>
+                <div className="flex flex-col items-center justify-center">
+                  <Feather className="w-16 h-16 text-[#C9A84C] mb-6 animate-bounce" />
+                  <h3 className="font-display text-3xl md:text-4xl font-bold text-forest mb-4">
+                    The Inkwell is just getting started.
+                  </h3>
+                  <p className="text-muted-foreground text-lg max-w-md mx-auto">
+                    Check back soon — great writing is on its way.
+                  </p>
                 </div>
-              </div>
-              <h3 className="font-display text-3xl font-bold text-forest mb-3">The Inkwell is just getting started.</h3>
-              <p className="text-muted-foreground text-lg">Check back soon — great writing is on its way.</p>
+              </Reveal>
             </div>
           ) : (
             <>
@@ -286,8 +291,8 @@ const Inkwell = () => {
               )}
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                {rest.map((a, i) => (
-                  <Reveal key={`${a.pillar}-${i}`} delay={(i % 3) * 100}>
+                {rest.map((a) => (
+                  <Reveal key={a._id} delay={100}>
                     <Card className="rounded-xl overflow-hidden h-full flex flex-col hover:-translate-y-2 hover:shadow-elevated transition-all duration-300 group">
                       <div className="relative h-48 overflow-hidden">
                         <img src={urlFor(a.coverImage).width(800).url()} alt={a.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
