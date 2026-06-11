@@ -7,6 +7,16 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { Reveal } from "@/hooks/use-reveal";
 import { BookOpen, Pencil, Globe2, Drama, Flame, Clock, ArrowRight, Feather } from "lucide-react";
 import { client, urlFor } from "@/lib/sanityClient";
+import { supabase } from "@/integrations/supabase/client";
+import { useSEO } from "@/hooks/use-seo";
+
+const FALLBACK_COVER = "https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=1200&q=70";
+const FALLBACK_AVATAR = "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=200&q=70";
+
+function estimateReadTime(text: string) {
+  const words = text.trim().split(/\s+/).filter(Boolean).length;
+  return Math.max(1, Math.round(words / 200));
+}
 
 const ARTICLES_QUERY = `*[_type == "article"] |
 order(publishedAt desc) {
@@ -79,13 +89,49 @@ const Inkwell = () => {
   const [scrollY, setScrollY] = useState(0);
   const feedRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    document.title = "The Inkwell — Mission House Ghana";
+  useSEO({
+    title: "The Inkwell — Creative Writing for Christian Youth | Mission House Ghana",
+    description: "The Inkwell is Mission House Ghana's digital publishing space where young Christian writers share devotionals, testimonies, poetry, and reflections on faith.",
+    canonical: "https://missionhousegh.lovable.app/inkwell",
+    type: "website",
+  });
 
+  useEffect(() => {
     const fetchArticles = async () => {
       try {
-        const data = await client.fetch(ARTICLES_QUERY);
-setSanityArticles(data);
+        const [sanityRes, dbRes] = await Promise.allSettled([
+          client.fetch(ARTICLES_QUERY),
+          supabase
+            .from("inkwell_articles")
+            .select("id,title,pillar,excerpt,full_article,writer_name,published_at")
+            .eq("is_published", true)
+            .order("published_at", { ascending: false }),
+        ]);
+
+        const sanityList = sanityRes.status === "fulfilled" ? (sanityRes.value ?? []) : [];
+        const dbList =
+          dbRes.status === "fulfilled" && !dbRes.value.error
+            ? (dbRes.value.data ?? []).map((r: any) => ({
+                _id: `db-${r.id}`,
+                _source: "db" as const,
+                title: r.title,
+                slug: { current: r.id },
+                pillar: r.pillar,
+                excerpt: r.excerpt,
+                coverImage: null,
+                coverUrl: FALLBACK_COVER,
+                author: r.writer_name,
+                authorPhoto: null,
+                authorUrl: FALLBACK_AVATAR,
+                readTime: estimateReadTime(r.full_article ?? ""),
+                publishedAt: r.published_at,
+              }))
+            : [];
+
+        const merged = [...dbList, ...sanityList].sort(
+          (a: any, b: any) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
+        );
+        setSanityArticles(merged);
       } catch (error) {
         console.error("Error fetching articles:", error);
       } finally {
