@@ -129,18 +129,30 @@ const Submit = () => {
         "Author Bio": parsed.data.authorBio,
       };
 
-      const res = await fetch(FORMSPREE, {
+      // Save to database so it appears in the Inkwell feed automatically
+      const { error: dbError } = await supabase.from("inkwell_articles").insert({
+        writer_name: parsed.data.writerName,
+        writer_email: parsed.data.writerEmail,
+        social_handle: parsed.data.socialHandle || null,
+        pillar: PILLAR_SLUG[parsed.data.pillarSelected] ?? "word",
+        title: parsed.data.articleTitle,
+        excerpt: parsed.data.excerpt,
+        full_article: parsed.data.fullArticle,
+        author_bio: parsed.data.authorBio,
+        is_published: true,
+      });
+
+      if (dbError) throw dbError;
+
+      // Also notify the team via Formspree (best-effort, non-blocking)
+      fetch(FORMSPREE, {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json" },
         body: JSON.stringify(payload),
-      });
+      }).catch(() => {});
 
-      if (res.ok) {
-        setSubmitted(true);
-        window.scrollTo({ top: 0, behavior: "smooth" });
-      } else {
-        throw new Error("submission_failed");
-      }
+      setSubmitted(true);
+      window.scrollTo({ top: 0, behavior: "smooth" });
     } catch (err) {
       setError("Something went wrong. Please email your piece directly to missionhouseintlghana@gmail.com and we'll take it from there.");
     } finally {
