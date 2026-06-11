@@ -7,6 +7,16 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { Reveal } from "@/hooks/use-reveal";
 import { BookOpen, Pencil, Globe2, Drama, Flame, Clock, ArrowRight, Feather } from "lucide-react";
 import { client, urlFor } from "@/lib/sanityClient";
+import { supabase } from "@/integrations/supabase/client";
+import { useSEO } from "@/hooks/use-seo";
+
+const FALLBACK_COVER = "https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=1200&q=70";
+const FALLBACK_AVATAR = "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=200&q=70";
+
+function estimateReadTime(text: string) {
+  const words = text.trim().split(/\s+/).filter(Boolean).length;
+  return Math.max(1, Math.round(words / 200));
+}
 
 const ARTICLES_QUERY = `*[_type == "article"] |
 order(publishedAt desc) {
@@ -79,13 +89,49 @@ const Inkwell = () => {
   const [scrollY, setScrollY] = useState(0);
   const feedRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    document.title = "The Inkwell — Mission House Ghana";
+  useSEO({
+    title: "The Inkwell — Creative Writing for Christian Youth | Mission House Ghana",
+    description: "The Inkwell is Mission House Ghana's digital publishing space where young Christian writers share devotionals, testimonies, poetry, and reflections on faith.",
+    canonical: "https://missionhousegh.lovable.app/inkwell",
+    type: "website",
+  });
 
+  useEffect(() => {
     const fetchArticles = async () => {
       try {
-        const data = await client.fetch(ARTICLES_QUERY);
-setSanityArticles(data);
+        const [sanityRes, dbRes] = await Promise.allSettled([
+          client.fetch(ARTICLES_QUERY),
+          supabase
+            .from("inkwell_articles")
+            .select("id,title,pillar,excerpt,full_article,writer_name,published_at")
+            .eq("is_published", true)
+            .order("published_at", { ascending: false }),
+        ]);
+
+        const sanityList = sanityRes.status === "fulfilled" ? (sanityRes.value ?? []) : [];
+        const dbList =
+          dbRes.status === "fulfilled" && !dbRes.value.error
+            ? (dbRes.value.data ?? []).map((r: any) => ({
+                _id: `db-${r.id}`,
+                _source: "db" as const,
+                title: r.title,
+                slug: { current: r.id },
+                pillar: r.pillar,
+                excerpt: r.excerpt,
+                coverImage: null,
+                coverUrl: FALLBACK_COVER,
+                author: r.writer_name,
+                authorPhoto: null,
+                authorUrl: FALLBACK_AVATAR,
+                readTime: estimateReadTime(r.full_article ?? ""),
+                publishedAt: r.published_at,
+              }))
+            : [];
+
+        const merged = [...dbList, ...sanityList].sort(
+          (a: any, b: any) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
+        );
+        setSanityArticles(merged);
       } catch (error) {
         console.error("Error fetching articles:", error);
       } finally {
@@ -271,14 +317,14 @@ setSanityArticles(data);
                 <Reveal>
                   <Card className="rounded-xl overflow-hidden grid md:grid-cols-2 mb-10 hover:-translate-y-1 hover:shadow-elevated transition-all duration-300">
                     <div className="relative h-72 md:h-auto overflow-hidden">
-                      <img src={urlFor(featured.coverImage).width(800).url()} alt={featured.title} className="w-full h-full object-cover transition-transform duration-700 hover:scale-105" />
+                      <img src={featured.coverImage ? urlFor(featured.coverImage).width(800).url() : (featured.coverUrl ?? FALLBACK_COVER)} alt={featured.title} className="w-full h-full object-cover transition-transform duration-700 hover:scale-105" />
                       <Badge className="absolute top-4 left-4 bg-[#C9A84C] text-earth hover:bg-[#C9A84C]">Featured · {pillarLabel(featured.pillar)}</Badge>
                     </div>
                     <div className="p-8 md:p-10 flex flex-col justify-center">
                       <h3 className="font-display text-3xl md:text-4xl font-bold text-forest mb-4">{featured.title}</h3>
                       <p className="text-muted-foreground mb-6">{featured.excerpt}</p>
                       <div className="flex items-center gap-3 mb-6">
-                        <img src={urlFor(featured.authorPhoto).width(100).url()} alt={featured.author} className="w-12 h-12 rounded-full object-cover" />
+                        <img src={featured.authorPhoto ? urlFor(featured.authorPhoto).width(100).url() : (featured.authorUrl ?? FALLBACK_AVATAR)} alt={featured.author} className="w-12 h-12 rounded-full object-cover" />
                         <div>
                           <p className="font-semibold text-foreground">{featured.author}</p>
                           <p className="text-xs text-muted-foreground flex items-center gap-1"><Clock className="w-3 h-3" /> {featured.readTime} min read</p>
@@ -295,14 +341,14 @@ setSanityArticles(data);
                   <Reveal key={a._id} delay={100}>
                     <Card className="rounded-xl overflow-hidden h-full flex flex-col hover:-translate-y-2 hover:shadow-elevated transition-all duration-300 group">
                       <div className="relative h-48 overflow-hidden">
-                        <img src={urlFor(a.coverImage).width(800).url()} alt={a.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                        <img src={a.coverImage ? urlFor(a.coverImage).width(800).url() : (a.coverUrl ?? FALLBACK_COVER)} alt={a.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
                         <Badge className="absolute top-3 left-3 bg-forest text-cream hover:bg-forest">{pillarLabel(a.pillar)}</Badge>
                       </div>
                       <div className="p-6 flex flex-col flex-1">
                         <h3 className="font-display text-xl font-bold text-forest mb-2 line-clamp-2">{a.title}</h3>
                         <p className="text-sm text-muted-foreground mb-4 line-clamp-3 flex-1">{a.excerpt}</p>
                         <div className="flex items-center gap-3 mb-4">
-                          <img src={urlFor(a.authorPhoto).width(100).url()} alt={a.author} className="w-10 h-10 rounded-full object-cover" />
+                          <img src={a.authorPhoto ? urlFor(a.authorPhoto).width(100).url() : (a.authorUrl ?? FALLBACK_AVATAR)} alt={a.author} className="w-10 h-10 rounded-full object-cover" />
                           <div className="flex-1 min-w-0">
                             <p className="text-sm font-semibold truncate">{a.author}</p>
                             <p className="text-xs text-muted-foreground flex items-center gap-1"><Clock className="w-3 h-3" />{a.readTime} min</p>

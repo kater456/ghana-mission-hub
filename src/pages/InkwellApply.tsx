@@ -14,6 +14,7 @@ import {
   Accordion, AccordionContent, AccordionItem, AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Feather, Mail, Loader2, ArrowRight } from "lucide-react";
+import { useSEO } from "@/hooks/use-seo";
 
 const FORMSPREE = "https://formspree.io/f/mjgdoroz";
 
@@ -77,7 +78,11 @@ const InkwellApply = () => {
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => { document.title = "Apply to Write — The Inkwell"; }, []);
+  useSEO({
+    title: "Apply to Write — The Inkwell | Mission House Ghana",
+    description: "Apply to become an Inkwell writer. A creative writing hub for young Christian voices — devotionals, testimonies, poetry, and more.",
+    canonical: "https://missionhousegh.lovable.app/inkwell/apply",
+  });
 
   const set = <K extends keyof FormState>(k: K, v: FormState[K]) => setData(d => ({ ...d, [k]: v }));
 

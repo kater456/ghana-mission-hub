@@ -14,6 +14,54 @@ export type Database = {
   }
   public: {
     Tables: {
+      inkwell_articles: {
+        Row: {
+          author_bio: string
+          cover_image_url: string | null
+          created_at: string
+          excerpt: string
+          full_article: string
+          id: string
+          is_published: boolean
+          pillar: string
+          published_at: string
+          social_handle: string | null
+          title: string
+          writer_email: string
+          writer_name: string
+        }
+        Insert: {
+          author_bio: string
+          cover_image_url?: string | null
+          created_at?: string
+          excerpt: string
+          full_article: string
+          id?: string
+          is_published?: boolean
+          pillar: string
+          published_at?: string
+          social_handle?: string | null
+          title: string
+          writer_email: string
+          writer_name: string
+        }
+        Update: {
+          author_bio?: string
+          cover_image_url?: string | null
+          created_at?: string
+          excerpt?: string
+          full_article?: string
+          id?: string
+          is_published?: boolean
+          pillar?: string
+          published_at?: string
+          social_handle?: string | null
+          title?: string
+          writer_email?: string
+          writer_name?: string
+        }
+        Relationships: []
+      }
       mission_updates: {
         Row: {
           content: string

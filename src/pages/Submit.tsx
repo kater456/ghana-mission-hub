@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { z } from "zod";
 import { Reveal } from "@/hooks/use-reveal";
@@ -11,6 +11,16 @@ import {
   Select, SelectContent, SelectItem, SelectTrigger, SelectValue,
 } from "@/components/ui/select";
 import { Feather, Loader2, Mail } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
+import { useSEO } from "@/hooks/use-seo";
+
+const PILLAR_SLUG: Record<string, string> = {
+  "The Word Unpacked": "word",
+  "My Story His Glory": "story",
+  "Faith Meets Life": "life",
+  "Creative Altar": "creative",
+  "The Sent Ones": "sent",
+};
 
 const FORMSPREE = "https://formspree.io/f/mjgdoroz";
 
@@ -63,9 +73,11 @@ const Submit = () => {
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    document.title = "Submit Your Piece — The Inkwell";
-  }, []);
+  useSEO({
+    title: "Submit Your Piece — The Inkwell | Mission House Ghana",
+    description: "Approved Inkwell writers: submit your next article or creative piece for publication.",
+    canonical: "https://missionhousegh.lovable.app/submit",
+  });
 
   const set = <K extends keyof FormState>(k: K, v: FormState[K]) => setData(d => ({ ...d, [k]: v }));
 
@@ -117,18 +129,30 @@ const Submit = () => {
         "Author Bio": parsed.data.authorBio,
       };
 
-      const res = await fetch(FORMSPREE, {
+      // Save to database so it appears in the Inkwell feed automatically
+      const { error: dbError } = await supabase.from("inkwell_articles").insert({
+        writer_name: parsed.data.writerName,
+        writer_email: parsed.data.writerEmail,
+        social_handle: parsed.data.socialHandle || null,
+        pillar: PILLAR_SLUG[parsed.data.pillarSelected] ?? "word",
+        title: parsed.data.articleTitle,
+        excerpt: parsed.data.excerpt,
+        full_article: parsed.data.fullArticle,
+        author_bio: parsed.data.authorBio,
+        is_published: true,
+      });
+
+      if (dbError) throw dbError;
+
+      // Also notify the team via Formspree (best-effort, non-blocking)
+      fetch(FORMSPREE, {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json" },
         body: JSON.stringify(payload),
-      });
+      }).catch(() => {});
 
-      if (res.ok) {
-        setSubmitted(true);
-        window.scrollTo({ top: 0, behavior: "smooth" });
-      } else {
-        throw new Error("submission_failed");
-      }
+      setSubmitted(true);
+      window.scrollTo({ top: 0, behavior: "smooth" });
     } catch (err) {
       setError("Something went wrong. Please email your piece directly to missionhouseintlghana@gmail.com and we'll take it from there.");
     } finally {
