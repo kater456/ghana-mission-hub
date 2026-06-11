@@ -17,6 +17,7 @@ import Contact from "./pages/Contact";
 import Inkwell from "./pages/Inkwell";
 import InkwellApply from "./pages/InkwellApply";
 import Submit from "./pages/Submit";
+import Studio from "./pages/Studio";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -40,6 +41,8 @@ const App = () => (
             <Route path="/inkwell" element={<Inkwell />} />
             <Route path="/inkwell/apply" element={<InkwellApply />} />
             <Route path="/submit" element={<Submit />} />
+            <Route path="/studio" element={<Studio />} />
+            <Route path="/studio/*" element={<Studio />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
