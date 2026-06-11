@@ -11,6 +11,16 @@ import {
   Select, SelectContent, SelectItem, SelectTrigger, SelectValue,
 } from "@/components/ui/select";
 import { Feather, Loader2, Mail } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
+import { useSEO } from "@/hooks/use-seo";
+
+const PILLAR_SLUG: Record<string, string> = {
+  "The Word Unpacked": "word",
+  "My Story His Glory": "story",
+  "Faith Meets Life": "life",
+  "Creative Altar": "creative",
+  "The Sent Ones": "sent",
+};
 
 const FORMSPREE = "https://formspree.io/f/mjgdoroz";
 
@@ -63,9 +73,11 @@ const Submit = () => {
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    document.title = "Submit Your Piece — The Inkwell";
-  }, []);
+  useSEO({
+    title: "Submit Your Piece — The Inkwell | Mission House Ghana",
+    description: "Approved Inkwell writers: submit your next article or creative piece for publication.",
+    canonical: "https://missionhousegh.lovable.app/submit",
+  });
 
   const set = <K extends keyof FormState>(k: K, v: FormState[K]) => setData(d => ({ ...d, [k]: v }));
 
